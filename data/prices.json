@@ -1,11 +1,35 @@
 {
- "updated": "2026-10-04T15:30:33.573Z",
+ "updated": "2026-10-04T15:45:06.257Z",
  "stores": {
   "lidl": {
+   "piept_pui": {
+    "price": 29.9,
+    "offerTitle": "Piept de pui, dezosat, fără piele per 100 g",
+    "offerPrice": 2.99,
+    "promo": true
+   },
    "ton": {
     "price": 7.74,
     "offerTitle": "NIXE Bucăți de ton în ulei de floarea- soarelui 1705 g",
     "offerPrice": 54.99,
+    "promo": true
+   },
+   "oua": {
+    "price": 8.66,
+    "offerTitle": "Ouă M Sol 30 buc.",
+    "offerPrice": 25.99,
+    "promo": true
+   },
+   "lapte": {
+    "price": 4.99,
+    "offerTitle": "PILOS Lapte de consum 1,5 L",
+    "offerPrice": 7.49,
+    "promo": true
+   },
+   "fasole": {
+    "price": 3.92,
+    "offerTitle": "CAMPO LARGO Fasole albă bob mediu 1 kg",
+    "offerPrice": 9.79,
     "promo": true
    },
    "paine": {
@@ -14,9 +38,45 @@
     "offerPrice": 3.99,
     "promo": true
    },
+   "cartofi": {
+    "price": 3.72,
+    "offerTitle": "Cartofi albi sac 5 kg",
+    "offerPrice": 9.29,
+    "promo": true
+   },
    "ardei": {
     "price": 4.19,
     "offerTitle": "Ardei kapia roșu per kg",
+    "offerPrice": 6.99,
+    "promo": true
+   },
+   "ceapa": {
+    "price": 1.59,
+    "offerTitle": "Ceapă galbenă per kg",
+    "offerPrice": 1.59,
+    "promo": true
+   },
+   "usturoi": {
+    "price": 3.43,
+    "offerTitle": "Focaccia cu usturoi 306 g",
+    "offerPrice": 6.99,
+    "promo": true
+   },
+   "castraveti": {
+    "price": 1.28,
+    "offerTitle": "Castraveți cornișon sac 3 kg",
+    "offerPrice": 10.99,
+    "promo": true
+   },
+   "salata": {
+    "price": 6.99,
+    "offerTitle": "Salată Iceberg per buc.",
+    "offerPrice": 6.99,
+    "promo": true
+   },
+   "banane": {
+    "price": 7.13,
+    "offerTitle": "Banane per kg",
     "offerPrice": 6.99,
     "promo": true
    },
@@ -94,12 +154,6 @@
     "offerPrice": 2.39,
     "promo": true
    },
-   "rosii": {
-    "price": 13.22,
-    "offerTitle": "Mazza Roșii pasate\n680 g 680 g",
-    "offerPrice": 8.99,
-    "promo": true
-   },
    "morcovi": {
     "price": 3.49,
     "offerTitle": "Morcovi pungă 1 kg\nbuc 1 kg",
@@ -122,8 +176,8 @@
  },
  "stats": {
   "lidl": {
-   "offersFound": 22,
-   "matched": 5,
+   "offersFound": 184,
+   "matched": 15,
    "leaflets": [
     "cont-my-lidl-protectia-datelor-cookies",
     "protectia-datelor-in-magazine",
@@ -135,7 +189,7 @@
   },
   "kaufland": {
    "offersFound": 517,
-   "matched": 14,
+   "matched": 13,
    "leaflets": [
     "RO_ro_leaflet6_3400_RO40-OC2",
     "RO_ro_Magazine3_3400_RO40-OC3",
