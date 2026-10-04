@@ -55,7 +55,7 @@ const KEYWORDS = {
   ardei: [["ardei"], ["pasta", "zacusca", "umplut", "iute", "boia", "copt"]],
   ceapa: [["ceapa"], ["verde", "rondele", "praf"]],
   usturoi: [["usturoi"], ["praf", "granulat", "sos"]],
-  rosii: [["rosii"], ["mere", "ardei", "ceapa", "struguri", "fasole", "conserva", "pasta", "suc", "uscate", "sos", "bulion", "pasata", "tocate", "decojite"]],
+  rosii: [["rosii"], ["pasate", "mere", "ardei", "ceapa", "struguri", "fasole", "conserva", "pasta", "suc", "uscate", "sos", "bulion", "pasata", "tocate", "decojite"]],
   castraveti: [["castrave"], ["muraturi", "murati", "otet"]],
   spanac: [["spanac"], ["congelat", "placinta"]],
   salata: [["salata"], ["boeuf", "vinete", "icre", "ton", "beuf", "dressing", "de pui"]],
@@ -92,7 +92,7 @@ async function fetchText(url, accept = "text/html") {
       const r = await fetch(url, { headers: { "User-Agent": UA, Accept: accept, "Accept-Language": "ro-RO,ro;q=0.9" } });
       if (r.ok) return await r.text();
       console.warn(`  ${r.status} ${url}`);
-      if (r.status === 404) return "";
+      if (r.status >= 400 && r.status < 500 && r.status !== 429) return ""; // eroare definitivă, nu reîncercăm
     } catch (e) { console.warn(`  eroare ${url}: ${e.message}`); }
     await new Promise((res) => setTimeout(res, 1500 * (i + 1)));
   }
@@ -175,6 +175,20 @@ function findLeafletIds(html) {
   return [...ids].filter((x) => !/^(view|page|flyer)$/.test(x)).slice(0, 6);
 }
 
+// Harta structurii unui JSON: căile (cu [] la liste) și exemple de valori, ca să știm unde stau produsele
+function structure(key, json) {
+  const paths = {};
+  const walk = (node, path, depth) => {
+    if (depth > 8 || node == null) return;
+    if (Array.isArray(node)) { node.slice(0, 3).forEach((n) => walk(n, path + "[]", depth + 1)); return; }
+    if (typeof node === "object") { for (const [k, v] of Object.entries(node)) walk(v, path + "." + k, depth + 1); return; }
+    if (!(path in paths)) paths[path] = String(node).slice(0, 80);
+  };
+  walk(json, "", 0);
+  report.structures = report.structures || {};
+  report.structures[key] = paths;
+}
+
 function sample(key, txt) {
   report.samples = report.samples || {};
   report.samples[key] = String(txt).slice(0, 4000);
@@ -196,8 +210,8 @@ async function lidlSearch() {
   for (const [id, [must]] of Object.entries(KEYWORDS)) {
     const q = must.join(" ");
     const url = `https://www.lidl.ro/q/api/search?q=${encodeURIComponent(q)}&assortment=RO&locale=ro_RO&version=v2.0.0&fetchsize=48`;
-    const txt = await fetchText(url, "application/json");
-    if (first) { sample("lidl-search", txt); first = false; }
+    const txt = await fetchText(url, "application/mindshift.search+json;version=2");
+    if (first) { sample("lidl-search", txt); first = false; if (!txt) break; }
     try { collectFromJson(JSON.parse(txt), out); } catch {}
     await new Promise((res) => setTimeout(res, 400));
   }
@@ -206,13 +220,13 @@ async function lidlSearch() {
 
 async function fromLeafletApi(id) {
   const urls = [
-    `https://endpoints.leaflets.schwarz/v4/flyer?flyer_identifier=${encodeURIComponent(id)}&region_id=0&region_code=0`,
-    `https://endpoints.leaflets.schwarz/v3/flyer?flyer_identifier=${encodeURIComponent(id)}`,
+    `https://endpoints.leaflets.schwarz/v4/flyer?flyer_identifier=${encodeURIComponent(id)}&region_id=0`,
   ];
   for (const u of urls) {
     const txt = await fetchText(u, "application/json");
     if (!txt) continue;
     sample("flyer-" + id, txt);
+    try { structure("flyer-" + id, JSON.parse(txt)); } catch {}
     try { const out = []; collectFromJson(JSON.parse(txt), out); if (out.length) return out; } catch {}
   }
   return [];

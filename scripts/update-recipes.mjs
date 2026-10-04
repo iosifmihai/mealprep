@@ -38,19 +38,32 @@ async function translate(text) {
       headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
       body: "q=" + encodeURIComponent(c),
     });
+    if (r.status === 429 && (translate.backoff = (translate.backoff || 0) + 1) <= 3) {
+      console.warn("  limită Google, aștept 90 s…");
+      await sleep(90000);
+      return translate(text);
+    }
     if (!r.ok) throw new Error("traducere " + r.status);
     const data = await r.json();
     out.push(data[0].map((x) => x[0]).join(""));
-    await sleep(250);
+    await sleep(1500);
   }
   return out.join("");
 }
 
 async function translateRecipe(r) {
   const lines = [r.name, ...r.full.map((f) => `${f.measure} ${f.name}`.trim())];
-  let tl = (await translate(lines.join("\n"))).split("\n").map((x) => x.trim());
-  if (tl.length !== lines.length) tl = await Promise.all(lines.map((l) => translate(l)));
-  return { src: r.name, name: tl[0], ing: tl.slice(1), steps: await translate(r.steps) };
+  const SEP = "\n=====\n";
+  const both = await translate(lines.join("\n") + SEP + r.steps);
+  const cut = both.indexOf("=====");
+  let tl = (cut >= 0 ? both.slice(0, cut) : "").trim().split("\n").map((x) => x.trim());
+  let steps = cut >= 0 ? both.slice(cut + 5).trim() : "";
+  if (tl.length !== lines.length || !steps) { // separatorul s-a pierdut: traducem pe bucăți
+    tl = (await translate(lines.join("\n"))).split("\n").map((x) => x.trim());
+    if (tl.length !== lines.length) throw new Error("linii nepotrivite la " + r.name);
+    steps = await translate(r.steps);
+  }
+  return { src: r.name, name: tl[0], ing: tl.slice(1), steps };
 }
 
 async function applyTranslations(recipes) {
@@ -61,7 +74,10 @@ async function applyTranslations(recipes) {
     let t = cache[r.id];
     if ((!t || t.src !== r.name || t.ing.length !== r.full.length) && !failed && done < max) {
       try { t = cache[r.id] = await translateRecipe(r); done++; }
-      catch (e) { console.warn("Oprit traducerea (reîncercăm mâine):", e.message); failed = true; t = null; }
+      catch (e) {
+        if (/linii nepotrivite/.test(e.message)) { console.warn("  sar peste:", e.message); t = null; }
+        else { console.warn("Oprit traducerea (continuăm la următoarea rulare):", e.message); failed = true; t = null; }
+      }
       if (done % 50 === 0) writeFileSync(CACHE_FILE, JSON.stringify(cache));
     }
     if (t && t.src === r.name && t.ing.length === r.full.length) {
