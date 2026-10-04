@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-04T15:08:31.064Z",
+ "updated": "2026-10-04T15:30:33.573Z",
  "stores": {
   "lidl": {
    "ton": {
@@ -34,6 +34,12 @@
    }
   },
   "kaufland": {
+   "piept_pui": {
+    "price": 33.99,
+    "offerTitle": "La Provincia Piept de pui dezosat kg",
+    "offerPrice": 33.99,
+    "promo": true
+   },
    "pulpe_pui": {
     "price": 13.49,
     "offerTitle": "Gustavi Pulpe de pui cu spate\nkg kg",
@@ -44,6 +50,12 @@
     "price": 46.99,
     "offerTitle": "K-Blue Bay Somon norvegian porționat\nsalmon salar 4x125 g",
     "offerPrice": 46.99,
+    "promo": true
+   },
+   "ton": {
+    "price": 34.45,
+    "offerTitle": "Rio Mare Ton în ulei\nde măsline 3 x 65 g",
+    "offerPrice": 27.99,
     "promo": true
    },
    "oua": {
@@ -76,6 +88,18 @@
     "offerPrice": 9.99,
     "promo": true
    },
+   "ceapa": {
+    "price": 2.39,
+    "offerTitle": "Ceapă roşie calitatea I\nkg kg",
+    "offerPrice": 2.39,
+    "promo": true
+   },
+   "rosii": {
+    "price": 13.22,
+    "offerTitle": "Mazza Roșii pasate\n680 g 680 g",
+    "offerPrice": 8.99,
+    "promo": true
+   },
    "morcovi": {
     "price": 3.49,
     "offerTitle": "Morcovi pungă 1 kg\nbuc 1 kg",
@@ -92,12 +116,6 @@
     "price": 10.3,
     "offerTitle": "O'green Mazăre verde\nboabe 800 g",
     "offerPrice": 10.99,
-    "promo": true
-   },
-   "ceapa": {
-    "price": 2.39,
-    "offerTitle": "Ceapă roşie calitatea I kg kg",
-    "offerPrice": 2.39,
     "promo": true
    }
   }
@@ -117,7 +135,7 @@
   },
   "kaufland": {
    "offersFound": 517,
-   "matched": 11,
+   "matched": 14,
    "leaflets": [
     "RO_ro_leaflet6_3400_RO40-OC2",
     "RO_ro_Magazine3_3400_RO40-OC3",
