@@ -35,12 +35,12 @@ const KEYWORDS = {
   somon: [["somon"], ["afumat", "salata", "pate"]],
   ton: [["ton"], ["salata", "pate", "tonic"]],
   oua: [["oua"], ["ciocolata", "kinder", "paste cu"]],
-  iaurt_grec: [["iaurt", "grec"], ["bautura"]],
+  iaurt_grec: [["iaurt", "grec"], ["bautura", "zmeura", "capsuni", "fructe", "piersic", "vanilie", "cirese", "mango", "afine", "caise"]],
   branza_vaci: [["branza", "vaci"], []],
   mozzarella: [["mozzarella"], ["pizza", "stick"]],
   feta: [["feta"], []],
   lapte: [["lapte"], ["ciocolata", "praf", "cocos", "condensat", "bautura", "orez", "migdale", "ovaz", "soia", "corp"]],
-  parmezan: [["parmez"], []],
+  parmezan: [["parmez"], ["paste", "mezzelune", "ravioli", "tortelloni", "sos"]],
   orez: [["orez"], ["lapte", "faina", "biscuiti", "rondele", "tort"]],
   paste: [["paste"], ["dinti", "tomate", "ardei", "sos", "pasta de"]],
   ovaz: [["ovaz"], ["lapte", "bautura", "biscuiti", "batoane"]],
@@ -57,7 +57,7 @@ const KEYWORDS = {
   ardei: [["ardei"], ["pasta", "zacusca", "umplut", "iute", "boia", "copt"]],
   ceapa: [["ceapa"], ["verde", "rondele", "praf"]],
   usturoi: [["usturoi"], ["praf", "granulat", "sos"]],
-  rosii: [["rosii"], ["conserva", "pasta", "suc", "uscate", "sos", "bulion", "pasata", "tocate", "decojite"]],
+  rosii: [["rosii"], ["mere", "ardei", "ceapa", "struguri", "fasole", "conserva", "pasta", "suc", "uscate", "sos", "bulion", "pasata", "tocate", "decojite"]],
   castraveti: [["castrave"], ["muraturi", "murati", "otet"]],
   spanac: [["spanac"], ["congelat", "placinta"]],
   salata: [["salata"], ["boeuf", "vinete", "icre", "ton", "beuf", "dressing", "de pui"]],
@@ -75,7 +75,18 @@ const KEYWORDS = {
   pesto: [["pesto"], []],
 };
 
-const norm = (s) => String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/\s+/g, " ").trim();
+// Greutate medie pe bucată, pentru produse vândute la kg dar numărate la bucată în catalog
+const GRAMS_PER_PIECE = { ardei: 200, ceapa: 125, lamaie: 125, avocado: 200, banane: 170, castraveti: 350, usturoi: 5 };
+
+// Excluse peste tot (dacă nu fac parte chiar din cuvintele cheie ale produsului)
+const GLOBAL_NOT = ["hrana", "pisici", "pisica", "caini", "caine", "pinsa", "pizza", "sunca", "salam", "baton", "chips", "snack", "biscuiti", "napolitane", "ciocolata", "inghetata", "cremvursti", "crenvursti", "parizer", "pateu", "aroma", "sampon", "detergent", "sapun", "jucarie"];
+
+const norm = (s) => String(s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9.,%]+/g, " ").replace(/\s+/g, " ").trim();
+// poziția (în cuvinte) unde începe expresia `kw` ca început de cuvânt; -1 dacă lipsește
+function wordPos(t, kw) {
+  const m = (" " + t).match(new RegExp(" " + kw.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  return m ? (" " + t).slice(0, m.index).split(" ").length - 1 : -1;
+}
 
 async function fetchText(url, accept = "text/html") {
   for (let i = 0; i < 3; i++) {
@@ -96,7 +107,11 @@ export function parsePack(title) {
   const multi = t.match(/(\d+)\s*x\s*(\d+(?:\.\d+)?)\s*(g|ml|kg|l)\b/);
   if (multi) { const f = { g: 1, ml: 1, kg: 1000, l: 1000 }[multi[3]]; return { qty: +multi[1] * +multi[2] * f, unit: /m?l$/.test(multi[3]) ? "ml" : "g" }; }
   const m = t.match(/(\d+(?:\.\d+)?)\s*(kg|g|gr|ml|l|buc|bucati)\b/);
-  if (!m) return null;
+  if (!m) {
+    if (/(^| )(per )?kg( |$)/.test(t)) return { qty: 1000, unit: "g" };
+    if (/(^| )(per )?(buc|bucata)( |$)/.test(t)) return { qty: 1, unit: "buc" };
+    return null;
+  }
   const n = +m[1], u = m[2];
   if (u === "kg") return { qty: n * 1000, unit: "g" };
   if (u === "g" || u === "gr") return { qty: n, unit: "g" };
@@ -184,11 +199,16 @@ export function matchOffers(store, offers) {
     let best = null;
     for (const o of offers) {
       const t = norm(o.title);
-      if (!must.every((w) => t.includes(w)) || not.some((w) => t.includes(w))) continue;
+      const pos = must.map((w) => wordPos(t, w));
+      if (pos.some((x) => x < 0) || Math.min(...pos) > 4) continue; // produsul trebuie numit la începutul titlului
+      if (not.some((w) => wordPos(t, w) >= 0)) continue;
+      if (GLOBAL_NOT.some((w) => !must.some((m) => m.includes(w)) && wordPos(t, w) >= 0)) continue;
       const pack = parsePack(o.title);
       let unitPrice;
       if (pack && (pack.unit === unit || (unit !== "buc" && pack.unit !== "buc"))) unitPrice = o.price / pack.qty;
-      else unitPrice = o.price / base.pack; // presupunem același ambalaj
+      else if (pack && unit === "buc" && pack.unit === "g" && GRAMS_PER_PIECE[id]) unitPrice = o.price / (pack.qty / GRAMS_PER_PIECE[id]);
+      else if (pack) continue; // unități incompatibile (ex. „avocado 700 g” vs. bucăți)
+      else unitPrice = o.price / base.pack; // fără gramaj: presupunem același ambalaj
       const ratio = unitPrice / baseUnitPrice;
       if (ratio < 0.35 || ratio > 2.5) continue; // potrivire suspectă
       if (!best || unitPrice < best.unitPrice) best = { unitPrice, offer: o, pack };

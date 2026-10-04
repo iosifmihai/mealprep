@@ -30,7 +30,9 @@ const priceOverrides = load(PRICE_KEY) || {};
 let ONLINE = [];
 let LIVE = null; // data/prices.json
 const ui = { q: "", cat: "toate", showN: 24, detail: null, loading: true };
-const allRecipes = () => RECIPES.concat(ONLINE);
+// Doar rețetele cu poză (TheMealDB). Cele locale, fără poză, rămân doar ca rezervă dacă nu se pot încărca.
+const allRecipes = () => (ONLINE.length ? ONLINE.filter((r) => r.image) : RECIPES);
+const T = (r, f) => r[f + "_ro"] || r[f]; // text tradus, dacă există
 const findRecipe = (id) => allRecipes().find((r) => r.id === id);
 window.mealprep = {
   setOnline(list) { ONLINE = list; },
@@ -88,72 +90,93 @@ function eligibleRecipes() {
     if (S.diet !== "echilibrat" && !r.diet.includes(S.diet)) return false;
     if (r.allergens.some((a) => S.allergens.includes(a))) return false;
     if (!r.online && r.time > S.maxTime) return false;
-    const names = Object.keys(r.ing).map((i) => PRODUCTS[i].name.toLowerCase()).join(" ") + " " + r.name.toLowerCase();
+    const names = (Object.keys(r.ing).map((i) => PRODUCTS[i].name).join(" ") + " " + r.name + " " + (r.name_ro || "")).toLowerCase();
     return !dislikes.some((d) => names.includes(d));
   });
 }
 function isLoved(r) {
   const loves = S.loves.toLowerCase().split(/[,;\n]/).map((s) => s.trim()).filter(Boolean);
-  const names = (Object.keys(r.ing).map((i) => PRODUCTS[i].name).join(" ") + " " + r.name).toLowerCase();
+  const names = (Object.keys(r.ing).map((i) => PRODUCTS[i].name).join(" ") + " " + r.name + " " + (r.name_ro || "")).toLowerCase();
   return loves.some((l) => names.includes(l));
 }
 
-// Cost estimat pe o porție standard (proporțional, fără rotunjire la pachet)
+// O „gătire” = rețeta făcută o dată = 4 porții = 2 mese pentru voi doi
+const BATCH = 4;
+const batchesOf = (id) => S.batches?.[id] || 1;
+
+// Cost estimat pe o porție (proporțional cu cât folosiți din fiecare produs)
 function recipeCost(r) {
   return Object.entries(r.ing).reduce((sum, [id, q]) => { const s = storeFor(id); return sum + q * s.price / s.pack; }, 0);
 }
 
-// Alege automat rețetele cele mai ieftine care încap în buget pentru numărul de zile ales
+// Alege automat rețetele cele mai ieftine care acoperă zilele planificate și încap în buget
 function autoPickForBudget() {
   // rețetele online au ingrediente fără preț în catalog; le folosim doar dacă le știm costul aproape complet
-  const list = eligibleRecipes().filter((r) => (r.other || []).length <= 2);
+  const list = eligibleRecipes().filter((r) => (r.other || []).length <= 1 && Object.keys(r.ing).length >= 3);
   const cheapest = (t) => list.filter((r) => r.type === t).sort((a, b) => isLoved(b) - isLoved(a) || recipeCost(a) - recipeCost(b));
   const mains = cheapest("main"), bf = cheapest("breakfast"), sn = cheapest("snack");
-  for (const nMains of [4, 3, 2, 1]) {
-    for (const extras of [[1, 1], [1, 0], [0, 1], [0, 0]]) {
-      S.chosen = [...mains.slice(0, nMains), ...(S.breakfast ? bf.slice(0, extras[0]) : []), ...(S.snack ? sn.slice(0, extras[1]) : [])].map((r) => r.id);
-      if (buildPlan().total <= S.budget) return true;
-    }
+  const mealsPerBatch = BATCH / 2;
+  const nMains = Math.min(mains.length, Math.max(1, Math.ceil((S.days * S.mainsPerDay) / mealsPerBatch)));
+  const cover = Math.max(1, Math.ceil(S.days / mealsPerBatch));
+  for (const extras of [[1, 1], [1, 0], [0, 1], [0, 0]]) {
+    S.chosen = mains.slice(0, nMains).map((r) => r.id);
+    S.batches = {};
+    if (S.breakfast && extras[0] && bf[0]) { S.chosen.push(bf[0].id); S.batches[bf[0].id] = cover; }
+    if (S.snack && extras[1] && sn[0]) { S.chosen.push(sn[0].id); S.batches[sn[0].id] = cover; }
+    if (buildPlan().total <= S.budget) return true;
   }
-  S.chosen = mains.slice(0, 1).map((r) => r.id);
+  // tot peste buget: mai puține rețete principale
+  for (let n = nMains - 1; n >= 1; n--) {
+    S.chosen = mains.slice(0, n).map((r) => r.id);
+    if (buildPlan().total <= S.budget) return true;
+  }
   return false;
 }
 
-// Construiește planul: câte porții din fiecare rețetă + factor de porție per persoană
+// Planul: fiecare rețetă aleasă se gătește o dată (sau de câte ori ați ales), apoi mesele se împart pe zile
 function buildPlan() {
   const chosen = allRecipes().filter((r) => S.chosen.includes(r.id));
   const byType = (t) => chosen.filter((r) => r.type === t);
   const mains = byType("main"), bf = S.breakfast ? byType("breakfast") : [], sn = S.snack ? byType("snack") : [];
+  // mese disponibile, amestecate ca să nu mâncați același lucru zile la rând
+  const pool = (rs) => {
+    const left = rs.map((r) => [r, batchesOf(r.id) * BATCH / 2]);
+    const out = [];
+    while (left.some(([, n]) => n > 0)) left.forEach((x) => { if (x[1] > 0) { out.push(x[0]); x[1]--; } });
+    return out;
+  };
+  const mPool = pool(mains), bPool = pool(bf), sPool = pool(sn);
+  const nDays = Math.max(Math.ceil(mPool.length / S.mainsPerDay), bPool.length, sPool.length);
   const days = [];
-  for (let d = 0; d < S.days; d++) {
+  for (let d = 0; d < nDays; d++) {
     const meals = [];
-    if (bf.length) meals.push(["Mic dejun", bf[d % bf.length]]);
+    if (bPool[d]) meals.push(["Mic dejun", bPool[d]]);
     for (let m = 0; m < S.mainsPerDay; m++) {
-      if (mains.length) meals.push([m === 0 ? "Prânz" : "Cină", mains[(d * S.mainsPerDay + m) % mains.length]]);
+      const r = mPool[d * S.mainsPerDay + m];
+      if (r) meals.push([m === 0 ? "Prânz" : "Cină", r]);
     }
-    if (sn.length) meals.push(["Gustare", sn[d % sn.length]]);
+    if (sPool[d]) meals.push(["Gustare", sPool[d]]);
     days.push(meals);
   }
-  // factor per persoană = țintă / kcal medii planificate pe zi
-  const avgKcal = days.reduce((s, ms) => s + ms.reduce((a, [, r]) => a + r.kcal, 0), 0) / Math.max(1, days.length);
-  const factors = S.people.map((p) => Math.min(1.7, Math.max(0.6, target(p).kcal / Math.max(1, avgKcal))));
-  const portions = {}; // recipeId -> porții totale (ajustate)
-  days.forEach((ms) => ms.forEach(([, r]) => { portions[r.id] = (portions[r.id] || 0) + factors[0] + factors[1]; }));
+  const mainDays = mPool.length / S.mainsPerDay;
   const need = {};
-  for (const [rid, n] of Object.entries(portions)) {
-    const r = findRecipe(rid);
-    for (const [ing, q] of Object.entries(r.ing)) need[ing] = (need[ing] || 0) + q * n;
+  for (const r of chosen) {
+    if ((r.type === "breakfast" && !S.breakfast) || (r.type === "snack" && !S.snack)) continue;
+    for (const [ing, q] of Object.entries(r.ing)) need[ing] = (need[ing] || 0) + q * BATCH * batchesOf(r.id);
   }
-  need.pungi = 0; // caserole: opționale, adăugate separat
   const lines = Object.entries(need).filter(([, q]) => q > 0).map(([id, q]) => {
     const s = storeFor(id);
-    const packs = Math.ceil(q / s.pack - 0.05);
-    return { id, name: PRODUCTS[id].name, section: PRODUCTS[id].section, unit: PRODUCTS[id].unit, qty: q, packs: Math.max(1, packs), ...s, cost: Math.max(1, packs) * s.price };
+    const packs = Math.max(1, Math.ceil(q / s.pack - 0.05));
+    return { id, name: PRODUCTS[id].name, section: PRODUCTS[id].section, unit: PRODUCTS[id].unit, qty: q, packs, ...s, cost: packs * s.price, used: q * s.price / s.pack };
   });
-  const total = lines.reduce((s, l) => s + l.cost, 0);
+  const total = lines.reduce((s, l) => s + l.cost, 0); // ce plătiți la casă (pachete întregi)
+  const used = lines.reduce((s, l) => s + l.used, 0); // cât consumați efectiv din ele
   // ingrediente din rețetele online pe care nu le avem în catalog (fără preț)
   const others = [...new Set(chosen.flatMap((r) => r.other || []))];
-  return { days, factors, avgKcal, lines, total, chosen, others };
+  // împărțirea fiecărei oale între voi, după caloriile fiecăruia
+  const kc = S.people.map((p) => target(p).kcal);
+  const split = kc.map((k) => Math.round((k / (kc[0] + kc[1])) * 100));
+  return { days, mainDays, lines, total, used, chosen, others, split };
 }
 
 // ---------- UI helpers ----------
@@ -247,16 +270,17 @@ const views = {
     if (ui.loading) return bubble("<p>Încarc rețetele… 🍳</p>");
     const q = ui.q.toLowerCase();
     const all = eligibleRecipes().filter((r) => (r.type !== "breakfast" || S.breakfast) && (r.type !== "snack" || S.snack));
-    const cats = ["toate", "Românești", ...new Set(all.map((r) => r.category).filter(Boolean))];
+    const cats = ["toate", ...new Set(all.map((r) => r.category).filter(Boolean))];
     const list = all
       .filter((r) => ui.cat === "toate" || r.cat === ui.cat || r.category === ui.cat)
-      .filter((r) => !q || (r.name + " " + Object.keys(r.ing).map((i) => PRODUCTS[i].name).join(" ") + " " + (r.full || []).map((f) => f.name).join(" ")).toLowerCase().includes(q))
+      .filter((r) => !q || (r.name + " " + (r.name_ro || "") + " " + Object.keys(r.ing).map((i) => PRODUCTS[i].name).join(" ") + " " + (r.full || []).map((f) => f.name).join(" ")).toLowerCase().includes(q))
       .sort((a, b) => S.chosen.includes(b.id) - S.chosen.includes(a.id) || isLoved(b) - isLoved(a) || !!a.online - !!b.online);
-    const est = S.chosen.length ? buildPlan().total : 0;
+    const pl = S.chosen.length ? buildPlan() : null;
+    const est = pl ? pl.total : 0;
     const hasMain = S.chosen.some((id) => findRecipe(id)?.type === "main");
     const TYPE = { main: "🍲 Fel principal", breakfast: "🍳 Mic dejun", snack: "🍌 Gustare/desert" };
-    return `${bubble(`<h2>Meniul casei 📜</h2><p>Avem <b>${all.length} rețete</b> potrivite filtrelor voastre${ONLINE.length ? ` (${RECIPES.length} în română + ${ONLINE.length} internaționale, cu poze și video)` : ""}. Bifați ce vă face poftă: <b>2–4 feluri principale</b>, 1–2 mic dejunuri, o gustare. Apăsați pe poză pentru rețeta completă.</p>`)}
-      <div class="total sticky ${est > S.budget ? "over" : ""}">${S.chosen.length} alese · <b>${fmt(est)}</b> / ${S.days} zile · buget ${fmt(+S.budget)}
+    return `${bubble(`<h2>Meniul casei 📜</h2><p>Avem <b>${all.length} rețete</b> cu poză potrivite filtrelor voastre. Fiecare rețetă aleasă o <b>gătiți o dată</b> și iese ~${BATCH} porții = 2 mese pentru amândoi. Bifați ce vă face poftă; apăsați pe poză pentru rețeta completă și video.</p>`)}
+      <div class="total sticky ${est > S.budget ? "over" : ""}"><span>${S.chosen.length} alese · gătite o dată: <b>${fmt(est)}</b> la casă · buget ${fmt(+S.budget)}${pl ? `<br><small>Felurile principale ajung ~${Math.floor(pl.mainDays * 10) / 10} zile (planificați ${S.days})</small>` : ""}</span>
         <button class="ghost" id="autobudget">💰 Alege automat în buget</button></div>
       <div class="filters"><input id="q" placeholder="🔍 Caută: pui, paste, linte…" value="${esc(ui.q)}">
         <select id="cat">${cats.map((c) => `<option value="${esc(c)}" ${ui.cat === c ? "selected" : ""}>${c === "toate" ? "Toate categoriile" : esc(RO_CAT[c] || c)}</option>`).join("")}</select></div>
@@ -272,13 +296,17 @@ const RO_CAT = { Chicken: "Pui", Beef: "Vită", Pork: "Porc", Lamb: "Miel", Seaf
 const ytSearch = (r) => `https://www.youtube.com/results?search_query=${encodeURIComponent((r.online ? r.name + " recipe" : "rețetă " + r.name))}`;
 const ytId = (url) => (String(url || "").match(/(?:v=|youtu\.be\/|embed\/)([\w-]{11})/) || [])[1] || "";
 
+const RO_AREA = { American: "American", British: "Britanic", Canadian: "Canadian", Chinese: "Chinezesc", Croatian: "Croat", Dutch: "Olandez", Egyptian: "Egiptean", Filipino: "Filipinez", French: "Franțuzesc", Greek: "Grecesc", Indian: "Indian", Irish: "Irlandez", Italian: "Italian", Jamaican: "Jamaican", Japanese: "Japonez", Kenyan: "Kenyan", Malaysian: "Malaezian", Mexican: "Mexican", Moroccan: "Marocan", Polish: "Polonez", Portuguese: "Portughez", Russian: "Rusesc", Spanish: "Spaniol", Thai: "Thailandez", Tunisian: "Tunisian", Turkish: "Turcesc", Ukrainian: "Ucrainean", Vietnamese: "Vietnamez", Romanian: "Românesc", Norwegian: "Norvegian", Saudi: "Saudit", Syrian: "Sirian", Venezulan: "Venezuelan", "United States": "American", Argentinian: "Argentinian", Algerian: "Algerian", Australian: "Australian", Slovakian: "Slovac", Uruguayan: "Uruguayan", Unknown: "Internațional" };
+
 function recipeCard(r, TYPE) {
   const on = S.chosen.includes(r.id);
   return `<div class="recipe ${on ? "on" : ""}">
     <button class="thumb" data-detail="${r.id}" aria-label="Detalii ${esc(r.name)}">${r.image ? `<img src="${r.image}/preview" onerror="this.src='${r.image}'" alt="" loading="lazy">` : `<span>${r.type === "breakfast" ? "🍳" : r.type === "snack" ? "🍌" : "🍲"}</span>`}${r.video ? `<i class="play">▶</i>` : ""}</button>
     <label><input type="checkbox" name="chosen" value="${r.id}" ${on ? "checked" : ""}>
-      <b>${isLoved(r) ? "❤️ " : ""}${esc(r.name)}</b></label>
-    <small>${TYPE[r.type]} · ${r.online ? `🌍 ${esc(r.area)}` : `⏱ ${r.time} min · ${r.kcal} kcal`} · ~${recipeCost(r).toFixed(2).replace(".", ",")} lei/porție</small>
+      <b>${isLoved(r) ? "❤️ " : ""}${esc(T(r, "name"))}</b></label>
+    <small>${TYPE[r.type]} · ${r.online ? `🌍 ${esc(RO_AREA[r.area] || r.area || "Internațional")}` : `⏱ ${r.time} min`}</small>
+    <small><b>~${fmt(recipeCost(r) * BATCH)}</b> gătită o dată (${BATCH} porții)${r.other?.length ? ` + ${r.other.length} ingrediente fără preț` : ""}</small>
+    ${on ? `<div class="batches">Gătesc de <button data-batch="${r.id}" data-d="-1" aria-label="mai puțin">−</button><b>${batchesOf(r.id)}×</b><button data-batch="${r.id}" data-d="1" aria-label="mai mult">＋</button></div>` : ""}
     <button class="link" data-detail="${r.id}">Vezi rețeta${r.video ? " + video" : ""} →</button>
   </div>`;
 }
@@ -286,15 +314,15 @@ function recipeCard(r, TYPE) {
 function detailView(r) {
   const vid = ytId(r.video);
   const ingList = r.full
-    ? r.full.map((f) => `<li>${esc(f.measure)} ${esc(f.name)}</li>`).join("")
-    : Object.entries(r.ing).map(([i, q]) => `<li>${fmtQty(q * 2, PRODUCTS[i].unit)} ${PRODUCTS[i].name}</li>`).join("");
+    ? r.full.map((f) => `<li>${esc(f.ro || `${f.measure} ${f.name}`)}</li>`).join("")
+    : Object.entries(r.ing).map(([i, q]) => `<li>${fmtQty(q * BATCH, PRODUCTS[i].unit)} ${PRODUCTS[i].name}</li>`).join("");
   return `<div class="modal" id="modal"><div class="sheet">
     <button class="close" id="closeModal" aria-label="Închide">✕</button>
     ${r.image ? `<img class="hero" src="${r.image}" alt="">` : ""}
-    <h2>${esc(r.name)}</h2>
-    <p class="muted">${r.online ? `🌍 ${esc(r.area)} · ${esc(RO_CAT[r.category] || r.category)} · rețetă în engleză (sursa TheMealDB), pentru ~4 porții` : `⏱ ${r.time} min · ${r.kcal} kcal/porție · P ${r.p} g / C ${r.c} g / G ${r.f} g`}</p>
-    <h3>Ingrediente ${r.online ? "" : "(pentru 2 porții)"}</h3><ul>${ingList}</ul>
-    <h3>Mod de preparare</h3><div class="steps">${esc(r.steps).replace(/\r?\n+/g, "<br><br>")}</div>
+    <h2>${esc(T(r, "name"))}</h2>
+    <p class="muted">${r.online ? `🌍 ${esc(RO_AREA[r.area] || r.area || "Internațional")} · ${esc(RO_CAT[r.category] || r.category)} · ${r.steps_ro ? "tradusă automat din engleză" : "în engleză — traducerea vine la următoarea actualizare"} (sursa TheMealDB), ~${BATCH} porții` : `⏱ ${r.time} min · ${r.kcal} kcal/porție · P ${r.p} g / C ${r.c} g / G ${r.f} g`}</p>
+    <h3>Ingrediente ${r.online ? "" : `(${BATCH} porții)`}</h3><ul>${ingList}</ul>
+    <h3>Mod de preparare</h3><div class="steps">${esc(T(r, "steps")).replace(/\r?\n+/g, "<br><br>")}</div>
     <h3>🎬 Video</h3>
     ${vid ? `<div class="video"><iframe src="https://www.youtube-nocookie.com/embed/${vid}" title="Video ${esc(r.name)}" allowfullscreen loading="lazy"></iframe></div>` : ""}
     <p><a href="${vid ? r.video : ytSearch(r)}" target="_blank" rel="noopener">${vid ? "Deschide pe YouTube" : "Caută video pe YouTube"} ↗</a>${r.source ? ` · <a href="${r.source}" target="_blank" rel="noopener">Sursa rețetei ↗</a>` : ""}</p>
@@ -326,7 +354,7 @@ function resultView() {
     <div class="card day"><h3>Ziua ${d + 1}</h3>${ms.map(([label, r]) => `<div class="meal"><span>${label}</span><b>${r.name}</b></div>`).join("")}
     <small class="muted">~${ms.reduce((a, [, r]) => a + r.kcal, 0)} kcal/porție standard</small></div>`).join("");
 
-  const portionsInfo = S.people.map((p, i) => `<li><b>${esc(p.name)}</b>: porții ×${plan.factors[i].toFixed(2)} (țintă ${target(p).kcal} kcal vs. ${Math.round(plan.avgKcal)} kcal standard)</li>`).join("");
+  const portionsInfo = S.people.map((p, i) => `<li><b>${esc(p.name)}</b>: ~${plan.split[i]}% din fiecare oală (țintă ${target(p).kcal} kcal/zi)</li>`).join("");
 
   const sections = Object.entries(SECTIONS).map(([sec, title]) => {
     const ls = plan.lines.filter((l) => l.section === sec);
@@ -353,11 +381,11 @@ function resultView() {
   ];
 
   return `
-    ${bubble(`<h2>Gata! Iată planul vostru 🎉</h2><p>Magazin: <b>${storeName}</b> · ${S.days} zile · 2 persoane · dietă ${DIETS[S.diet]}.</p>`)}
-    <div class="card"><h3>Porții personalizate</h3><ul>${portionsInfo}</ul><small class="muted">Cantitățile din listă sunt deja ajustate pentru amândoi. La împărțit în caserole, folosiți acești multiplicatori.</small></div>
+    ${bubble(`<h2>Gata! Iată planul vostru 🎉</h2><p>Magazin: <b>${storeName}</b> · gătiți o dată, mâncați ~${Math.floor(plan.mainDays * 10) / 10} zile${plan.mainDays < S.days ? ` (din ${S.days} planificate — mai adăugați o rețetă sau apăsați ＋ la una)` : ""} · 2 persoane · dietă ${DIETS[S.diet]}.</p>`)}
+    <div class="card"><h3>Cum împărțiți porțiile</h3><ul>${portionsInfo}</ul><small class="muted">Fiecare rețetă se gătește o dată și dă ${BATCH} porții standard (2 mese pentru amândoi). Împărțiți-o în caserole după procentele de mai sus.</small></div>
     <h2>📅 Planul de mese</h2><div class="days">${daysHtml}</div>
     <h2>🛒 Lista de cumpărături</h2>
-    <div class="total ${over ? "over" : ""}">Total estimat: <b>${fmt(plan.total)}</b> · buget ${fmt(+S.budget)} ${over ? "— 😬 peste buget: alegeți rețete cu linte/năut/ouă sau mai puține zile" : "— ✅ în buget"}</div>
+    <div class="total ${over ? "over" : ""}">La casă (pachete întregi): <b>${fmt(plan.total)}</b> · consumat efectiv în rețete: ${fmt(plan.used)} — restul rămâne în cămară · buget ${fmt(+S.budget)} ${over ? "— 😬 peste buget: alegeți rețete cu linte/năut/ouă sau mai puține zile" : "— ✅ în buget"}</div>
     ${S.hasStaples ? "" : `<p><b>Nu uitați condimentele:</b> ${STAPLES.join(", ")}</p>`}
     <p class="muted small">${LIVE?.updated ? `🔥 = preț din oferta/revista curentă (actualizat ${new Date(LIVE.updated).toLocaleDateString("ro-RO")}). Restul sunt estimări.` : "Prețurile sunt estimative (încă nu există o actualizare din reviste)."} Le puteți corecta direct în tabel cu prețul de la raft — se salvează pentru data viitoare.</p>
     ${sections}${othersHtml}
@@ -394,6 +422,8 @@ document.addEventListener("click", (e) => {
   if (e.target.id === "closeModal" || e.target.id === "modal") { ui.detail = null; render(); return; }
   const tg = e.target.closest("[data-toggle]");
   if (tg) { const id = tg.dataset.toggle; S.chosen = S.chosen.includes(id) ? S.chosen.filter((x) => x !== id) : [...S.chosen, id]; save(); render(); return; }
+  const bt = e.target.closest("[data-batch]");
+  if (bt) { const id = bt.dataset.batch; S.batches = S.batches || {}; S.batches[id] = Math.max(1, Math.min(6, batchesOf(id) + +bt.dataset.d)); save(); render(); return; }
   if (e.target.id === "more") { ui.showN += 24; render(); return; }
   if (e.target.id === "copy") {
     navigator.clipboard.writeText(listAsText()).then(() => { e.target.textContent = "✅ Copiat!"; });

@@ -11,8 +11,10 @@ Site static (HTML/CSS/JS, fără server) care vă ghidează pas cu pas:
 Deschideți `index.html` în browser. Progresul și prețurile corectate se salvează local.
 
 ## Rețete
-- ~28 rețete proprii în română (inclusiv românești: ciorbă de perișoare, tocăniță, musaca, ardei umpluți…) în `data.js`.
-- Câteva sute de rețete internaționale cu **poză, instrucțiuni complete și video YouTube** din [TheMealDB](https://www.themealdb.com) (în engleză), salvate în `data/recipes-online.json`. Dacă fișierul lipsește, site-ul le citește direct din TheMealDB.
+- Câteva sute de rețete internaționale cu **poză, instrucțiuni complete și video YouTube** din [TheMealDB](https://www.themealdb.com) traduse automat în română (cache în `data/translations-ro.json`), salvate în `data/recipes-online.json`. Dacă fișierul lipsește, site-ul le citește direct din TheMealDB.
+
+## Cost
+Fiecare rețetă aleasă se gătește o dată (~4 porții = 2 mese pentru 2 persoane); cu ＋ o gătiți de mai multe ori. Totalul e ce plătiți la casă pe pachete întregi.
 
 ## Actualizare zilnică (GitHub Actions → Vercel)
 `.github/workflows/daily-update.yml` rulează zilnic (~07:17 ora României) și manual din **Actions → Run workflow**:

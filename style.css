@@ -58,3 +58,5 @@ button.link{border:0;background:none;padding:0;color:var(--accent);text-align:le
 .tag.promo{background:#e67e22}
 .others{columns:2;padding-left:18px}@media (max-width:560px){.others{columns:1}}
 body.noscroll{overflow:hidden}
+.batches{display:flex;align-items:center;gap:8px;font-size:.9rem}
+.batches button{padding:2px 10px;border-width:1px;background:var(--card);color:var(--accent)}
