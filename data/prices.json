@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-04T15:45:06.257Z",
+ "updated": "2026-10-04T15:57:46.789Z",
  "stores": {
   "lidl": {
    "piept_pui": {
@@ -56,12 +56,6 @@
     "offerPrice": 1.59,
     "promo": true
    },
-   "usturoi": {
-    "price": 3.43,
-    "offerTitle": "Focaccia cu usturoi 306 g",
-    "offerPrice": 6.99,
-    "promo": true
-   },
    "castraveti": {
     "price": 1.28,
     "offerTitle": "Castraveți cornișon sac 3 kg",
@@ -90,6 +84,48 @@
     "price": 2.75,
     "offerTitle": "Lămâi per kg",
     "offerPrice": 5.49,
+    "promo": true
+   },
+   "unt": {
+    "price": 4.19,
+    "offerTitle": "PILOS Unt de masă 200 g",
+    "offerPrice": 4.19,
+    "promo": true
+   },
+   "smantana": {
+    "price": 3.2,
+    "offerTitle": "PILOS Smântână 1 kg",
+    "offerPrice": 7.99,
+    "promo": true
+   },
+   "cascaval": {
+    "price": 11.99,
+    "offerTitle": "Pilos Cașcaval Rucăr 500 g",
+    "offerPrice": 14.99,
+    "promo": true
+   },
+   "porc": {
+    "price": 18.9,
+    "offerTitle": "Spată de porc fără os per 100 g",
+    "offerPrice": 1.89,
+    "promo": true
+   },
+   "carnati": {
+    "price": 5.5,
+    "offerTitle": "Baroni Cârnați Oltenești 400 g",
+    "offerPrice": 10.99,
+    "promo": true
+   },
+   "fasole_verde": {
+    "price": 4.82,
+    "offerTitle": "FRESHONA Fasole verde tăiată 450 g",
+    "offerPrice": 2.89,
+    "promo": true
+   },
+   "vinete": {
+    "price": 10.64,
+    "offerTitle": "FRESHONA Vinete coapte tocate 450 g",
+    "offerPrice": 4.79,
     "promo": true
    }
   },
@@ -171,13 +207,73 @@
     "offerTitle": "O'green Mazăre verde\nboabe 800 g",
     "offerPrice": 10.99,
     "promo": true
+   },
+   "smantana": {
+    "price": 7.99,
+    "offerTitle": "Lacto Fresh Smântână\n20% grăsime 500 g",
+    "offerPrice": 9.99,
+    "promo": true
+   },
+   "cascaval": {
+    "price": 11.96,
+    "offerTitle": "Dalbis Caşcaval Dalia de vacă\n45% grăsime, 100 g 100 g",
+    "offerPrice": 2.99,
+    "promo": true
+   },
+   "carne_vita": {
+    "price": 27.49,
+    "offerTitle": "Edenia Cannelloni cu vită 400 g",
+    "offerPrice": 21.99,
+    "promo": true
+   },
+   "porc": {
+    "price": 12.99,
+    "offerTitle": "Rasol posterior de porc kg",
+    "offerPrice": 12.99,
+    "promo": true
+   },
+   "carnati": {
+    "price": 4.4,
+    "offerTitle": "Cârnați din pulpă de porc\nkg kg",
+    "offerPrice": 21.99,
+    "promo": true
+   },
+   "creveti": {
+    "price": 23.99,
+    "offerTitle": "Dayseaday Creveți cu codiță 31/40\n500 g 500 g",
+    "offerPrice": 29.99,
+    "promo": true
+   },
+   "ciuperci": {
+    "price": 6.24,
+    "offerTitle": "Copex Ciuperci tăiate 800 g",
+    "offerPrice": 9.99,
+    "promo": true
+   },
+   "varza": {
+    "price": 2.69,
+    "offerTitle": "Varză albă România kg kg",
+    "offerPrice": 1.79,
+    "promo": true
+   },
+   "porumb": {
+    "price": 4.99,
+    "offerTitle": "Alex Star Porumb dulce 340 g",
+    "offerPrice": 4.99,
+    "promo": true
+   },
+   "maioneza": {
+    "price": 17.49,
+    "offerTitle": "Biffi Sos de maioneză 480 g",
+    "offerPrice": 20.99,
+    "promo": true
    }
   }
  },
  "stats": {
   "lidl": {
-   "offersFound": 184,
-   "matched": 15,
+   "offersFound": 287,
+   "matched": 21,
    "leaflets": [
     "cont-my-lidl-protectia-datelor-cookies",
     "protectia-datelor-in-magazine",
@@ -188,8 +284,8 @@
    ]
   },
   "kaufland": {
-   "offersFound": 517,
-   "matched": 13,
+   "offersFound": 520,
+   "matched": 23,
    "leaflets": [
     "RO_ro_leaflet6_3400_RO40-OC2",
     "RO_ro_Magazine3_3400_RO40-OC3",
