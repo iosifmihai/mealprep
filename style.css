@@ -41,3 +41,20 @@ table.list{width:100%;border-collapse:collapse;background:var(--card);border-rad
 summary{cursor:pointer}
 @media (max-width:560px){.price{width:64px}.list td{padding:6px 4px;font-size:.9rem}}
 @media print{header,.nav,.row,button{display:none}body{background:#fff;color:#000}}
+.recipe{position:relative;gap:6px}.recipe label{display:flex;gap:8px;align-items:flex-start;cursor:pointer}
+.recipe label input{display:inline-block;width:18px;height:18px;margin-top:3px;flex:none;accent-color:var(--accent)}
+.thumb{position:relative;display:block;width:100%;aspect-ratio:4/3;padding:0;border:0;border-radius:9px;overflow:hidden;background:var(--accent-soft);font-size:3rem}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.play{position:absolute;right:8px;bottom:8px;background:#e00;color:#fff;font-style:normal;font-size:.8rem;border-radius:6px;padding:2px 8px}
+button.link{border:0;background:none;padding:0;color:var(--accent);text-align:left;font-size:.9rem}
+.filters{display:flex;gap:8px;margin:12px 0;flex-wrap:wrap}.filters input{flex:2;min-width:180px}.filters select{flex:1;min-width:150px}
+.total.sticky{position:sticky;top:76px;z-index:3;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:20;display:flex;justify-content:center;align-items:flex-start;overflow-y:auto;padding:16px}
+.sheet{position:relative;background:var(--card);color:var(--ink);border-radius:16px;max-width:720px;width:100%;padding:18px;margin:auto 0}
+.sheet .hero{width:100%;max-height:340px;object-fit:cover;border-radius:12px}
+.close{position:absolute;top:10px;right:10px;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:50%;width:38px;height:38px;padding:0}
+.steps{line-height:1.6}
+.video{position:relative;aspect-ratio:16/9}.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:12px}
+.tag.promo{background:#e67e22}
+.others{columns:2;padding-left:18px}@media (max-width:560px){.others{columns:1}}
+body.noscroll{overflow:hidden}

@@ -26,6 +26,18 @@ let S = load(STORE_KEY) || {
 };
 const priceOverrides = load(PRICE_KEY) || {};
 
+// Date încărcate la pornire (vezi online.js): rețete TheMealDB și prețuri din oferte
+let ONLINE = [];
+let LIVE = null; // data/prices.json
+const ui = { q: "", cat: "toate", showN: 24, detail: null, loading: true };
+const allRecipes = () => RECIPES.concat(ONLINE);
+const findRecipe = (id) => allRecipes().find((r) => r.id === id);
+window.mealprep = {
+  setOnline(list) { ONLINE = list; },
+  setLive(p) { LIVE = p; },
+  done() { ui.loading = false; render(); },
+};
+
 function load(k) { try { return JSON.parse(localStorage.getItem(k)); } catch { return null; } }
 function save() { try { localStorage.setItem(STORE_KEY, JSON.stringify(S)); localStorage.setItem(PRICE_KEY, JSON.stringify(priceOverrides)); } catch {} }
 
@@ -59,7 +71,10 @@ function target(p) {
 
 function storeFor(id) {
   const pr = PRODUCTS[id];
-  const get = (st) => ({ ...pr[st], price: priceOverrides[`${st}:${id}`] ?? pr[st].price, store: st });
+  const get = (st) => {
+    const live = LIVE?.stores?.[st]?.[id];
+    return { ...pr[st], price: priceOverrides[`${st}:${id}`] ?? live?.price ?? pr[st].price, promo: !!live && priceOverrides[`${st}:${id}`] == null, store: st };
+  };
   if (S.store === "ambele") {
     const a = get("lidl"), b = get("kaufland");
     return a.price / a.pack <= b.price / b.pack ? a : b;
@@ -69,10 +84,10 @@ function storeFor(id) {
 
 function eligibleRecipes() {
   const dislikes = S.dislikes.toLowerCase().split(/[,;\n]/).map((s) => s.trim()).filter(Boolean);
-  return RECIPES.filter((r) => {
+  return allRecipes().filter((r) => {
     if (S.diet !== "echilibrat" && !r.diet.includes(S.diet)) return false;
     if (r.allergens.some((a) => S.allergens.includes(a))) return false;
-    if (r.time > S.maxTime) return false;
+    if (!r.online && r.time > S.maxTime) return false;
     const names = Object.keys(r.ing).map((i) => PRODUCTS[i].name.toLowerCase()).join(" ") + " " + r.name.toLowerCase();
     return !dislikes.some((d) => names.includes(d));
   });
@@ -90,7 +105,8 @@ function recipeCost(r) {
 
 // Alege automat rețetele cele mai ieftine care încap în buget pentru numărul de zile ales
 function autoPickForBudget() {
-  const list = eligibleRecipes();
+  // rețetele online au ingrediente fără preț în catalog; le folosim doar dacă le știm costul aproape complet
+  const list = eligibleRecipes().filter((r) => (r.other || []).length <= 2);
   const cheapest = (t) => list.filter((r) => r.type === t).sort((a, b) => isLoved(b) - isLoved(a) || recipeCost(a) - recipeCost(b));
   const mains = cheapest("main"), bf = cheapest("breakfast"), sn = cheapest("snack");
   for (const nMains of [4, 3, 2, 1]) {
@@ -105,7 +121,7 @@ function autoPickForBudget() {
 
 // Construiește planul: câte porții din fiecare rețetă + factor de porție per persoană
 function buildPlan() {
-  const chosen = RECIPES.filter((r) => S.chosen.includes(r.id));
+  const chosen = allRecipes().filter((r) => S.chosen.includes(r.id));
   const byType = (t) => chosen.filter((r) => r.type === t);
   const mains = byType("main"), bf = S.breakfast ? byType("breakfast") : [], sn = S.snack ? byType("snack") : [];
   const days = [];
@@ -125,7 +141,7 @@ function buildPlan() {
   days.forEach((ms) => ms.forEach(([, r]) => { portions[r.id] = (portions[r.id] || 0) + factors[0] + factors[1]; }));
   const need = {};
   for (const [rid, n] of Object.entries(portions)) {
-    const r = RECIPES.find((x) => x.id === rid);
+    const r = findRecipe(rid);
     for (const [ing, q] of Object.entries(r.ing)) need[ing] = (need[ing] || 0) + q * n;
   }
   need.pungi = 0; // caserole: opționale, adăugate separat
@@ -135,7 +151,9 @@ function buildPlan() {
     return { id, name: PRODUCTS[id].name, section: PRODUCTS[id].section, unit: PRODUCTS[id].unit, qty: q, packs: Math.max(1, packs), ...s, cost: Math.max(1, packs) * s.price };
   });
   const total = lines.reduce((s, l) => s + l.cost, 0);
-  return { days, factors, avgKcal, lines, total, chosen };
+  // ingrediente din rețetele online pe care nu le avem în catalog (fără preț)
+  const others = [...new Set(chosen.flatMap((r) => r.other || []))];
+  return { days, factors, avgKcal, lines, total, chosen, others };
 }
 
 // ---------- UI helpers ----------
@@ -226,29 +244,63 @@ const views = {
     ${nav("Arată-mi rețetele! 🍽️")}`,
 
   10: () => {
-    const list = eligibleRecipes().sort((a, b) => isLoved(b) - isLoved(a));
-    const group = (t, title) => {
-      if (t === "breakfast" && !S.breakfast) return "";
-      if (t === "snack" && !S.snack) return "";
-      const rs = list.filter((r) => r.type === t);
-      return `<h3>${title}</h3>${rs.length ? `<div class="recipes">${rs.map((r) => `
-        <label class="recipe ${S.chosen.includes(r.id) ? "on" : ""}"><input type="checkbox" name="chosen" value="${r.id}" ${S.chosen.includes(r.id) ? "checked" : ""}>
-          <b>${isLoved(r) ? "❤️ " : ""}${r.name}</b>
-          <small>⏱ ${r.time} min · ~${recipeCost(r).toFixed(2).replace(".", ",")} lei/porție · ${r.kcal} kcal · P ${r.p} / C ${r.c} / G ${r.f}</small>
-          <small class="muted">${Object.keys(r.ing).map((i) => PRODUCTS[i].name).join(", ")}</small>
-        </label>`).join("")}</div>` : `<p class="muted">Nicio rețetă nu trece de filtre — relaxați restricțiile sau timpul.</p>`}`;
-    };
+    if (ui.loading) return bubble("<p>Încarc rețetele… 🍳</p>");
+    const q = ui.q.toLowerCase();
+    const all = eligibleRecipes().filter((r) => (r.type !== "breakfast" || S.breakfast) && (r.type !== "snack" || S.snack));
+    const cats = ["toate", "Românești", ...new Set(all.map((r) => r.category).filter(Boolean))];
+    const list = all
+      .filter((r) => ui.cat === "toate" || r.cat === ui.cat || r.category === ui.cat)
+      .filter((r) => !q || (r.name + " " + Object.keys(r.ing).map((i) => PRODUCTS[i].name).join(" ") + " " + (r.full || []).map((f) => f.name).join(" ")).toLowerCase().includes(q))
+      .sort((a, b) => S.chosen.includes(b.id) - S.chosen.includes(a.id) || isLoved(b) - isLoved(a) || !!a.online - !!b.online);
     const est = S.chosen.length ? buildPlan().total : 0;
-    const hasMain = S.chosen.some((id) => RECIPES.find((r) => r.id === id)?.type === "main");
-    return `${bubble(`<h2>Meniul casei 📜</h2><p>Am filtrat după dietă, alergii, ce nu vă place și timp. Bifați ce vă face poftă — recomand <b>2–4 feluri principale</b> (le rotesc în zile), 1–2 mic dejunuri și o gustare.</p>`)}
-      <div class="total ${est > S.budget ? "over" : ""}">Selecția curentă: <b>${fmt(est)}</b> pentru ${S.days} zile · buget ${fmt(+S.budget)}
+    const hasMain = S.chosen.some((id) => findRecipe(id)?.type === "main");
+    const TYPE = { main: "🍲 Fel principal", breakfast: "🍳 Mic dejun", snack: "🍌 Gustare/desert" };
+    return `${bubble(`<h2>Meniul casei 📜</h2><p>Avem <b>${all.length} rețete</b> potrivite filtrelor voastre${ONLINE.length ? ` (${RECIPES.length} în română + ${ONLINE.length} internaționale, cu poze și video)` : ""}. Bifați ce vă face poftă: <b>2–4 feluri principale</b>, 1–2 mic dejunuri, o gustare. Apăsați pe poză pentru rețeta completă.</p>`)}
+      <div class="total sticky ${est > S.budget ? "over" : ""}">${S.chosen.length} alese · <b>${fmt(est)}</b> / ${S.days} zile · buget ${fmt(+S.budget)}
         <button class="ghost" id="autobudget">💰 Alege automat în buget</button></div>
-      ${group("main", "🍲 Feluri principale")}${group("breakfast", "🍳 Mic dejun")}${group("snack", "🍌 Gustări")}
+      <div class="filters"><input id="q" placeholder="🔍 Caută: pui, paste, linte…" value="${esc(ui.q)}">
+        <select id="cat">${cats.map((c) => `<option value="${esc(c)}" ${ui.cat === c ? "selected" : ""}>${c === "toate" ? "Toate categoriile" : esc(RO_CAT[c] || c)}</option>`).join("")}</select></div>
+      <div class="recipes">${list.slice(0, ui.showN).map((r) => recipeCard(r, TYPE)).join("") || `<p class="muted">Nimic găsit — încercați altă căutare sau relaxați filtrele.</p>`}</div>
+      ${list.length > ui.showN ? `<div class="row"><button class="ghost" id="more">Arată mai multe (${list.length - ui.showN} rămase)</button></div>` : ""}
       ${nav("Generează planul ✨", hasMain)}`;
   },
 
   11: () => resultView(),
 };
+
+const RO_CAT = { Chicken: "Pui", Beef: "Vită", Pork: "Porc", Lamb: "Miel", Seafood: "Pește & fructe de mare", Vegetarian: "Vegetarian", Vegan: "Vegan", Pasta: "Paste", Breakfast: "Mic dejun", Dessert: "Desert", Side: "Garnituri", Starter: "Aperitive", Miscellaneous: "Diverse" };
+const ytSearch = (r) => `https://www.youtube.com/results?search_query=${encodeURIComponent((r.online ? r.name + " recipe" : "rețetă " + r.name))}`;
+const ytId = (url) => (String(url || "").match(/(?:v=|youtu\.be\/|embed\/)([\w-]{11})/) || [])[1] || "";
+
+function recipeCard(r, TYPE) {
+  const on = S.chosen.includes(r.id);
+  return `<div class="recipe ${on ? "on" : ""}">
+    <button class="thumb" data-detail="${r.id}" aria-label="Detalii ${esc(r.name)}">${r.image ? `<img src="${r.image}/preview" onerror="this.src='${r.image}'" alt="" loading="lazy">` : `<span>${r.type === "breakfast" ? "🍳" : r.type === "snack" ? "🍌" : "🍲"}</span>`}${r.video ? `<i class="play">▶</i>` : ""}</button>
+    <label><input type="checkbox" name="chosen" value="${r.id}" ${on ? "checked" : ""}>
+      <b>${isLoved(r) ? "❤️ " : ""}${esc(r.name)}</b></label>
+    <small>${TYPE[r.type]} · ${r.online ? `🌍 ${esc(r.area)}` : `⏱ ${r.time} min · ${r.kcal} kcal`} · ~${recipeCost(r).toFixed(2).replace(".", ",")} lei/porție</small>
+    <button class="link" data-detail="${r.id}">Vezi rețeta${r.video ? " + video" : ""} →</button>
+  </div>`;
+}
+
+function detailView(r) {
+  const vid = ytId(r.video);
+  const ingList = r.full
+    ? r.full.map((f) => `<li>${esc(f.measure)} ${esc(f.name)}</li>`).join("")
+    : Object.entries(r.ing).map(([i, q]) => `<li>${fmtQty(q * 2, PRODUCTS[i].unit)} ${PRODUCTS[i].name}</li>`).join("");
+  return `<div class="modal" id="modal"><div class="sheet">
+    <button class="close" id="closeModal" aria-label="Închide">✕</button>
+    ${r.image ? `<img class="hero" src="${r.image}" alt="">` : ""}
+    <h2>${esc(r.name)}</h2>
+    <p class="muted">${r.online ? `🌍 ${esc(r.area)} · ${esc(RO_CAT[r.category] || r.category)} · rețetă în engleză (sursa TheMealDB), pentru ~4 porții` : `⏱ ${r.time} min · ${r.kcal} kcal/porție · P ${r.p} g / C ${r.c} g / G ${r.f} g`}</p>
+    <h3>Ingrediente ${r.online ? "" : "(pentru 2 porții)"}</h3><ul>${ingList}</ul>
+    <h3>Mod de preparare</h3><div class="steps">${esc(r.steps).replace(/\r?\n+/g, "<br><br>")}</div>
+    <h3>🎬 Video</h3>
+    ${vid ? `<div class="video"><iframe src="https://www.youtube-nocookie.com/embed/${vid}" title="Video ${esc(r.name)}" allowfullscreen loading="lazy"></iframe></div>` : ""}
+    <p><a href="${vid ? r.video : ytSearch(r)}" target="_blank" rel="noopener">${vid ? "Deschide pe YouTube" : "Caută video pe YouTube"} ↗</a>${r.source ? ` · <a href="${r.source}" target="_blank" rel="noopener">Sursa rețetei ↗</a>` : ""}</p>
+    <div class="row"><button class="primary" data-toggle="${r.id}">${S.chosen.includes(r.id) ? "✓ Aleasă — scoate din plan" : "＋ Adaugă în plan"}</button></div>
+  </div></div>`;
+}
 
 function personView(i) {
   const p = S.people[i];
@@ -280,15 +332,15 @@ function resultView() {
     const ls = plan.lines.filter((l) => l.section === sec);
     if (!ls.length) return "";
     return `<h3>${title}</h3><table class="list"><tbody>${ls.map((l) => `
-      <tr><td><label><input type="checkbox" class="tick"> ${l.product}</label><small>${l.name} · necesar ${fmtQty(l.qty, l.unit)}${S.store === "ambele" ? ` · <span class="tag ${l.store}">${l.store === "lidl" ? "Lidl" : "Kaufland"}</span>` : ""}</small></td>
+      <tr><td><label><input type="checkbox" class="tick"> ${l.product}${l.promo ? ` <span class="tag promo" title="${esc(LIVE.stores[l.store][l.id].offerTitle)}">🔥 ofertă</span>` : ""}</label><small>${l.name} · necesar ${fmtQty(l.qty, l.unit)}${S.store === "ambele" ? ` · <span class="tag ${l.store}">${l.store === "lidl" ? "Lidl" : "Kaufland"}</span>` : ""}</small></td>
       <td class="num">× ${l.packs}</td>
       <td class="num"><input class="price" type="number" step="0.01" data-pid="${l.store}:${l.id}" value="${l.price}"></td>
       <td class="num">${fmt(l.cost)}</td></tr>`).join("")}</tbody></table>`;
   }).join("");
 
   const over = plan.total > S.budget;
-  const recipesHtml = plan.chosen.map((r) => `<details class="card"><summary><b>${r.name}</b> · ⏱ ${r.time} min</summary>
-      <p><b>Ingrediente / porție standard:</b> ${Object.entries(r.ing).map(([i, q]) => `${PRODUCTS[i].name} ${fmtQty(q, PRODUCTS[i].unit)}`).join(", ")}</p><p>${r.steps}</p></details>`).join("");
+  const recipesHtml = `<div class="recipes">${plan.chosen.map((r) => recipeCard(r, { main: "🍲 Fel principal", breakfast: "🍳 Mic dejun", snack: "🍌 Gustare" })).join("")}</div>`;
+  const othersHtml = plan.others.length ? `<h3>🧺 Alte ingrediente (din rețetele internaționale, fără preț în catalog)</h3><ul class="others">${plan.others.map((o) => `<li><label><input type="checkbox" class="tick"> ${esc(o)}</label></li>`).join("")}</ul>` : "";
 
   const tips = [
     "📱 Urmăriți ce mâncați cu <b>MyFitnessPal</b> sau <b>Yazio</b> câteva săptămâni — calibrați porțiile mult mai bine.",
@@ -307,8 +359,8 @@ function resultView() {
     <h2>🛒 Lista de cumpărături</h2>
     <div class="total ${over ? "over" : ""}">Total estimat: <b>${fmt(plan.total)}</b> · buget ${fmt(+S.budget)} ${over ? "— 😬 peste buget: alegeți rețete cu linte/năut/ouă sau mai puține zile" : "— ✅ în buget"}</div>
     ${S.hasStaples ? "" : `<p><b>Nu uitați condimentele:</b> ${STAPLES.join(", ")}</p>`}
-    <p class="muted small">Prețurile sunt estimative (catalog intern, ${new Date().getFullYear()}). Le puteți corecta direct în tabel cu prețul de la raft — se salvează pentru data viitoare.</p>
-    ${sections}
+    <p class="muted small">${LIVE?.updated ? `🔥 = preț din oferta/revista curentă (actualizat ${new Date(LIVE.updated).toLocaleDateString("ro-RO")}). Restul sunt estimări.` : "Prețurile sunt estimative (încă nu există o actualizare din reviste)."} Le puteți corecta direct în tabel cu prețul de la raft — se salvează pentru data viitoare.</p>
+    ${sections}${othersHtml}
     <div class="row"><button class="primary" id="copy">📋 Copiază lista</button><button class="ghost" onclick="window.print()">🖨️ Printează</button></div>
     <h2>👩‍🍳 Rețete</h2>${recipesHtml}
     <h2>🚀 Dincolo de farfurie</h2><ul class="tips">${tips.map((t) => `<li>${t}</li>`).join("")}</ul>
@@ -323,19 +375,26 @@ function listAsText() {
     const ls = plan.lines.filter((l) => l.section === sec);
     if (!ls.length) return "";
     return `${title}\n` + ls.map((l) => `- ${l.product} × ${l.packs}${S.store === "ambele" ? ` [${l.store}]` : ""}`).join("\n");
-  }).filter(Boolean).join("\n\n") + `\n\nTotal estimat: ${fmt(plan.total)}`;
+  }).filter(Boolean).join("\n\n") + (plan.others.length ? `\n\n🧺 Alte ingrediente\n${plan.others.map((o) => "- " + o).join("\n")}` : "") + `\n\nTotal estimat: ${fmt(plan.total)}`;
 }
 
 // ---------- Render & evenimente ----------
 function render() {
   $("#progress").innerHTML = STEPS.map((s, i) => `<span class="${i === S.step ? "cur" : i < S.step ? "done" : ""}" title="${s}"></span>`).join("");
   $("#stepname").textContent = `Pas ${S.step + 1}/${STEPS.length} · ${STEPS[S.step]}`;
-  $("#app").innerHTML = views[S.step]();
+  $("#app").innerHTML = views[S.step]() + (ui.detail && findRecipe(ui.detail) ? detailView(findRecipe(ui.detail)) : "");
+  document.body.classList.toggle("noscroll", !!ui.detail);
 }
 
 document.addEventListener("click", (e) => {
   const g = e.target.closest("[data-go]");
   if (g && !g.disabled) go(+g.dataset.go);
+  const d = e.target.closest("[data-detail]");
+  if (d) { e.preventDefault(); ui.detail = d.dataset.detail; render(); return; }
+  if (e.target.id === "closeModal" || e.target.id === "modal") { ui.detail = null; render(); return; }
+  const tg = e.target.closest("[data-toggle]");
+  if (tg) { const id = tg.dataset.toggle; S.chosen = S.chosen.includes(id) ? S.chosen.filter((x) => x !== id) : [...S.chosen, id]; save(); render(); return; }
+  if (e.target.id === "more") { ui.showN += 24; render(); return; }
   if (e.target.id === "copy") {
     navigator.clipboard.writeText(listAsText()).then(() => { e.target.textContent = "✅ Copiat!"; });
   }
@@ -348,8 +407,22 @@ document.addEventListener("click", (e) => {
   }
 });
 
+document.addEventListener("keydown", (e) => { if (e.key === "Escape" && ui.detail) { ui.detail = null; render(); } });
+
+let qTimer;
+document.addEventListener("input", (e) => {
+  if (e.target.id !== "q") return;
+  clearTimeout(qTimer);
+  qTimer = setTimeout(() => {
+    ui.q = e.target.value; ui.showN = 24; render();
+    const q = $("#q"); q.focus(); q.setSelectionRange(q.value.length, q.value.length);
+  }, 250);
+});
+
 document.addEventListener("change", (e) => {
   const t = e.target;
+  if (t.id === "q") return;
+  if (t.id === "cat") { ui.cat = t.value; ui.showN = 24; render(); return; }
   if (t.classList.contains("tick")) { t.closest("tr").classList.toggle("done", t.checked); return; }
   if (t.classList.contains("price")) { priceOverrides[t.dataset.pid] = +t.value; save(); render(); return; }
   const n = t.name;

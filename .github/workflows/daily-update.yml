@@ -1,0 +1,30 @@
+name: Actualizare zilnică prețuri și rețete
+
+on:
+  schedule:
+    - cron: "17 4 * * *" # zilnic ~07:17 ora României
+  workflow_dispatch: {} # buton „Run workflow” în tab-ul Actions
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Prețuri din ofertele Lidl și Kaufland
+        run: node scripts/update-prices.mjs
+        continue-on-error: true
+      - name: Rețete cu poze și video (TheMealDB)
+        run: node scripts/update-recipes.mjs
+        continue-on-error: true
+      - name: Commit dacă s-a schimbat ceva
+        run: |
+          git config user.name "meal-prep-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/
+          git diff --cached --quiet || (git commit -m "Actualizare automată prețuri/rețete $(date -u +%F)" && git push)
