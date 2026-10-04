@@ -83,6 +83,26 @@ function isLoved(r) {
   return loves.some((l) => names.includes(l));
 }
 
+// Cost estimat pe o porție standard (proporțional, fără rotunjire la pachet)
+function recipeCost(r) {
+  return Object.entries(r.ing).reduce((sum, [id, q]) => { const s = storeFor(id); return sum + q * s.price / s.pack; }, 0);
+}
+
+// Alege automat rețetele cele mai ieftine care încap în buget pentru numărul de zile ales
+function autoPickForBudget() {
+  const list = eligibleRecipes();
+  const cheapest = (t) => list.filter((r) => r.type === t).sort((a, b) => isLoved(b) - isLoved(a) || recipeCost(a) - recipeCost(b));
+  const mains = cheapest("main"), bf = cheapest("breakfast"), sn = cheapest("snack");
+  for (const nMains of [4, 3, 2, 1]) {
+    for (const extras of [[1, 1], [1, 0], [0, 1], [0, 0]]) {
+      S.chosen = [...mains.slice(0, nMains), ...(S.breakfast ? bf.slice(0, extras[0]) : []), ...(S.snack ? sn.slice(0, extras[1]) : [])].map((r) => r.id);
+      if (buildPlan().total <= S.budget) return true;
+    }
+  }
+  S.chosen = mains.slice(0, 1).map((r) => r.id);
+  return false;
+}
+
 // Construiește planul: câte porții din fiecare rețetă + factor de porție per persoană
 function buildPlan() {
   const chosen = RECIPES.filter((r) => S.chosen.includes(r.id));
@@ -214,12 +234,15 @@ const views = {
       return `<h3>${title}</h3>${rs.length ? `<div class="recipes">${rs.map((r) => `
         <label class="recipe ${S.chosen.includes(r.id) ? "on" : ""}"><input type="checkbox" name="chosen" value="${r.id}" ${S.chosen.includes(r.id) ? "checked" : ""}>
           <b>${isLoved(r) ? "❤️ " : ""}${r.name}</b>
-          <small>⏱ ${r.time} min · ${r.kcal} kcal · P ${r.p} / C ${r.c} / G ${r.f}</small>
+          <small>⏱ ${r.time} min · ~${recipeCost(r).toFixed(2).replace(".", ",")} lei/porție · ${r.kcal} kcal · P ${r.p} / C ${r.c} / G ${r.f}</small>
           <small class="muted">${Object.keys(r.ing).map((i) => PRODUCTS[i].name).join(", ")}</small>
         </label>`).join("")}</div>` : `<p class="muted">Nicio rețetă nu trece de filtre — relaxați restricțiile sau timpul.</p>`}`;
     };
+    const est = S.chosen.length ? buildPlan().total : 0;
     const hasMain = S.chosen.some((id) => RECIPES.find((r) => r.id === id)?.type === "main");
     return `${bubble(`<h2>Meniul casei 📜</h2><p>Am filtrat după dietă, alergii, ce nu vă place și timp. Bifați ce vă face poftă — recomand <b>2–4 feluri principale</b> (le rotesc în zile), 1–2 mic dejunuri și o gustare.</p>`)}
+      <div class="total ${est > S.budget ? "over" : ""}">Selecția curentă: <b>${fmt(est)}</b> pentru ${S.days} zile · buget ${fmt(+S.budget)}
+        <button class="ghost" id="autobudget">💰 Alege automat în buget</button></div>
       ${group("main", "🍲 Feluri principale")}${group("breakfast", "🍳 Mic dejun")}${group("snack", "🍌 Gustări")}
       ${nav("Generează planul ✨", hasMain)}`;
   },
@@ -315,6 +338,10 @@ document.addEventListener("click", (e) => {
   if (g && !g.disabled) go(+g.dataset.go);
   if (e.target.id === "copy") {
     navigator.clipboard.writeText(listAsText()).then(() => { e.target.textContent = "✅ Copiat!"; });
+  }
+  if (e.target.id === "autobudget") {
+    if (!autoPickForBudget()) alert("Nici cea mai ieftină combinație nu încape în buget — măriți bugetul sau scădeți numărul de zile.");
+    save(); render();
   }
   if (e.target.id === "reset" && confirm("Ștergem tot și o luăm de la capăt?")) {
     localStorage.removeItem(STORE_KEY); location.reload();
