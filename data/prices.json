@@ -1,1 +1,173 @@
-{"updated":null,"stores":{"lidl":{},"kaufland":{}},"stats":{}}
+{
+ "updated": "2026-10-04T15:08:31.064Z",
+ "stores": {
+  "lidl": {
+   "ton": {
+    "price": 7.74,
+    "offerTitle": "NIXE Bucăți de ton în ulei de floarea- soarelui 1705 g",
+    "offerPrice": 54.99,
+    "promo": true
+   },
+   "paine": {
+    "price": 2.85,
+    "offerTitle": "Pâinea Campionilor 700 g",
+    "offerPrice": 3.99,
+    "promo": true
+   },
+   "ardei": {
+    "price": 6.99,
+    "offerTitle": "Ardei kapia roșu per kg",
+    "offerPrice": 6.99,
+    "promo": true
+   },
+   "avocado": {
+    "price": 11.99,
+    "offerTitle": "Avocado Hass plasă 700 g",
+    "offerPrice": 11.99,
+    "promo": true
+   },
+   "lamaie": {
+    "price": 5.49,
+    "offerTitle": "Lămâi per kg",
+    "offerPrice": 5.49,
+    "promo": true
+   }
+  },
+  "kaufland": {
+   "piept_pui": {
+    "price": 31.98,
+    "offerTitle": "Aldis Şuncă din piept de pui\n500 g 500 g",
+    "offerPrice": 15.99,
+    "promo": true
+   },
+   "pulpe_pui": {
+    "price": 13.49,
+    "offerTitle": "Gustavi Pulpe de pui cu spate\nkg kg",
+    "offerPrice": 13.49,
+    "promo": true
+   },
+   "curcan": {
+    "price": 11.93,
+    "offerTitle": "One Sensitive Hrană uscată pisici\ncurcan și orez 2,8 Kg 2,8 Kg",
+    "offerPrice": 66.79,
+    "promo": true
+   },
+   "somon": {
+    "price": 46.99,
+    "offerTitle": "K-Blue Bay Somon norvegian porționat\nsalmon salar 4x125 g",
+    "offerPrice": 46.99,
+    "promo": true
+   },
+   "ton": {
+    "price": 13.99,
+    "offerTitle": "Lion Baton 41 g - 42 g",
+    "offerPrice": 2.39,
+    "promo": true
+   },
+   "oua": {
+    "price": 11.99,
+    "offerTitle": "Ouă delicioase din ogradă\nM cod 2 10 bucăți 10 bucăți",
+    "offerPrice": 11.99,
+    "promo": true
+   },
+   "iaurt_grec": {
+    "price": 6.2,
+    "offerTitle": "Sanlacta Iaurt stil grecesc cu zmeură\n1 kg 1 kg",
+    "offerPrice": 15.49,
+    "promo": true
+   },
+   "mozzarella": {
+    "price": 4.5,
+    "offerTitle": "Fiorell Mozzarella\n500 g 500 g",
+    "offerPrice": 17.99,
+    "promo": true
+   },
+   "lapte": {
+    "price": 3.79,
+    "offerTitle": "K-Classic Lapte UHT 1 l",
+    "offerPrice": 3.79,
+    "promo": true
+   },
+   "parmezan": {
+    "price": 6.4,
+    "offerTitle": "Food & Glory Paste Mezzelune cu\nprosciutto, parmezan 250 g",
+    "offerPrice": 15.99,
+    "promo": true
+   },
+   "fasole": {
+    "price": 4.5,
+    "offerTitle": "Maxims Fasole albă\nextra 800 g",
+    "offerPrice": 8.99,
+    "promo": true
+   },
+   "cartofi": {
+    "price": 4,
+    "offerTitle": "Cartofi roşii plasă 5 kg\ncalitatea I plasă 5kg",
+    "offerPrice": 9.99,
+    "promo": true
+   },
+   "ardei": {
+    "price": 7.69,
+    "offerTitle": "Pinsa cu brânză Gouda\nardei, salam Spinata 140 g",
+    "offerPrice": 7.69,
+    "promo": true
+   },
+   "ceapa": {
+    "price": 2.39,
+    "offerTitle": "Ceapă roşie calitatea I\nkg kg",
+    "offerPrice": 2.39,
+    "promo": true
+   },
+   "rosii": {
+    "price": 3.49,
+    "offerTitle": "Mere roşii kg",
+    "offerPrice": 3.49,
+    "promo": true
+   },
+   "morcovi": {
+    "price": 3.49,
+    "offerTitle": "Morcovi pungă 1 kg\nbuc 1 kg",
+    "offerPrice": 3.49,
+    "promo": true
+   },
+   "avocado": {
+    "price": 4.79,
+    "offerTitle": "Avocado buc",
+    "offerPrice": 4.79,
+    "promo": true
+   },
+   "mazare": {
+    "price": 10.3,
+    "offerTitle": "O'green Mazăre verde\nboabe 800 g",
+    "offerPrice": 10.99,
+    "promo": true
+   }
+  }
+ },
+ "stats": {
+  "lidl": {
+   "offersFound": 22,
+   "matched": 5,
+   "leaflets": [
+    "cont-my-lidl-protectia-datelor-cookies",
+    "protectia-datelor-in-magazine",
+    "nota-de-informare-serviciul-clien-i",
+    "informare-supravegherea-video",
+    "catalogul-saptamanal-de-luni-28-09-pana-duminica-04-10",
+    "catalogul-saptamanal-de-luni-05-10-pana-duminica-11-10"
+   ]
+  },
+  "kaufland": {
+   "offersFound": 517,
+   "matched": 18,
+   "leaflets": [
+    "RO_ro_leaflet6_3400_RO40-OC2",
+    "RO_ro_Magazine3_3400_RO40-OC3",
+    "RO_ro_Wrapper2_3400_RO40-CL4",
+    "RO_ro_leaflet6_3400_RO41-OC2",
+    "RO_ro_Magazine3_3400_RO41-OC3",
+    "RO_ro_Wrapper2_3400_RO41-CL4"
+   ]
+  }
+ }
+}
