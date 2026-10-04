@@ -16,13 +16,11 @@ const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 const SOURCES = {
   lidl: [
     "https://www.lidl.ro/c/cataloage-online/s10019911",
-    "https://www.lidl.ro/c/oferte-saptamana-aceasta/a10023711",
     "https://www.lidl.ro/",
   ],
   kaufland: [
     "https://www.kaufland.ro/cataloage-cu-reduceri.html",
     "https://www.kaufland.ro/oferte/oferte-saptamanale/saptamana-curenta.html",
-    "https://www.kaufland.ro/oferte/oferte-saptamanale/saptamana-urmatoare.html",
   ],
 };
 
@@ -225,6 +223,18 @@ export function matchOffers(store, offers) {
   return result;
 }
 
+// Raport de depanare: linkuri interesante din pagini (reviste, API-uri, JSON), salvat în data/scrape-report.json
+const report = {};
+function collectLinks(store, url, html) {
+  const links = new Set();
+  for (const m of html.matchAll(/(?:https?:)?\/\/[^"'\s<>()\\]+|\/[a-z0-9][^"'\s<>()\\]*/gi)) {
+    const u = m[0];
+    if (/leaflet|flyer|catalog|prospect|revist|api|\.json|endpoint|oferte|offer/i.test(u) && !/\.(png|jpe?g|webp|svg|css|woff2?)(\?|$)/i.test(u)) links.add(u.slice(0, 300));
+  }
+  report[store] = report[store] || {};
+  report[store][url] = { length: html.length, links: [...links].slice(0, 150), scriptTypes: [...new Set([...html.matchAll(/<script[^>]*type="([^"]+)"/g)].map((x) => x[1]))] };
+}
+
 async function scrapeStore(store) {
   const offers = [];
   const leafletIds = new Set();
@@ -233,6 +243,7 @@ async function scrapeStore(store) {
     console.log(`  ${store}: ${url} -> ${html.length} caractere`);
     if (!html) continue;
     if (process.env.DEBUG_HTML) { mkdirSync(DEBUG_DIR, { recursive: true }); writeFileSync(new URL(`${store}-${offers.length}.html`, DEBUG_DIR), html); }
+    collectLinks(store, url, html);
     offers.push(...extractOffers(html));
     findLeafletIds(html).forEach((id) => leafletIds.add(id));
   }
@@ -261,6 +272,7 @@ async function main() {
     }
   }
   writeFileSync(OUT, JSON.stringify(out, null, 1));
+  writeFileSync(new URL("../data/scrape-report.json", import.meta.url), JSON.stringify(report, null, 1));
   console.log("Scris data/prices.json");
 }
 
