@@ -175,6 +175,35 @@ function findLeafletIds(html) {
   return [...ids].filter((x) => !/^(view|page|flyer)$/.test(x)).slice(0, 6);
 }
 
+function sample(key, txt) {
+  report.samples = report.samples || {};
+  report.samples[key] = String(txt).slice(0, 4000);
+}
+
+// Lidl: lista revistelor active din API-ul oficial al vizualizatorului de reviste
+async function lidlFlyerIds() {
+  const txt = await fetchText("https://endpoints.leaflets.schwarz/v4/overview?client_locale=lidl/ro-RO", "application/json");
+  sample("lidl-overview", txt);
+  const ids = new Set();
+  for (const m of txt.matchAll(/"(?:flyer_?[iI]dentifier|identifier|slug)"\s*:\s*"([^"]+)"/g)) ids.add(m[1]);
+  return [...ids].slice(0, 12);
+}
+
+// Lidl: căutare în sortimentul de pe lidl.ro, câte un termen pentru fiecare produs din catalog
+async function lidlSearch() {
+  const out = [];
+  let first = true;
+  for (const [id, [must]] of Object.entries(KEYWORDS)) {
+    const q = must.join(" ");
+    const url = `https://www.lidl.ro/q/api/search?q=${encodeURIComponent(q)}&assortment=RO&locale=ro_RO&version=v2.0.0&fetchsize=48`;
+    const txt = await fetchText(url, "application/json");
+    if (first) { sample("lidl-search", txt); first = false; }
+    try { collectFromJson(JSON.parse(txt), out); } catch {}
+    await new Promise((res) => setTimeout(res, 400));
+  }
+  return out;
+}
+
 async function fromLeafletApi(id) {
   const urls = [
     `https://endpoints.leaflets.schwarz/v4/flyer?flyer_identifier=${encodeURIComponent(id)}&region_id=0&region_code=0`,
@@ -183,6 +212,7 @@ async function fromLeafletApi(id) {
   for (const u of urls) {
     const txt = await fetchText(u, "application/json");
     if (!txt) continue;
+    sample("flyer-" + id, txt);
     try { const out = []; collectFromJson(JSON.parse(txt), out); if (out.length) return out; } catch {}
   }
   return [];
@@ -247,7 +277,13 @@ async function scrapeStore(store) {
     offers.push(...extractOffers(html));
     findLeafletIds(html).forEach((id) => leafletIds.add(id));
   }
-  for (const id of leafletIds) {
+  if (store === "lidl") {
+    (await lidlFlyerIds()).forEach((id) => leafletIds.add(id));
+    const found = await lidlSearch();
+    console.log(`  lidl: căutare lidl.ro -> ${found.length} produse`);
+    offers.push(...found);
+  }
+  for (const id of [...leafletIds].filter((x) => !/protectia|cookies|informare|supraveghere/.test(x))) {
     const o = await fromLeafletApi(id);
     console.log(`  ${store}: revista ${id} -> ${o.length} produse`);
     offers.push(...o);
