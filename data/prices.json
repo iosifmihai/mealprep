@@ -1,17 +1,11 @@
 {
- "updated": "2026-10-04T15:57:46.789Z",
+ "updated": "2026-10-05T11:27:03.955Z",
  "stores": {
   "lidl": {
    "piept_pui": {
     "price": 29.9,
     "offerTitle": "Piept de pui, dezosat, fără piele per 100 g",
     "offerPrice": 2.99,
-    "promo": true
-   },
-   "ton": {
-    "price": 7.74,
-    "offerTitle": "NIXE Bucăți de ton în ulei de floarea- soarelui 1705 g",
-    "offerPrice": 54.99,
     "promo": true
    },
    "oua": {
@@ -26,46 +20,16 @@
     "offerPrice": 7.49,
     "promo": true
    },
-   "fasole": {
-    "price": 3.92,
-    "offerTitle": "CAMPO LARGO Fasole albă bob mediu 1 kg",
-    "offerPrice": 9.79,
-    "promo": true
-   },
-   "paine": {
-    "price": 2.85,
-    "offerTitle": "Pâinea Campionilor 700 g",
-    "offerPrice": 3.99,
-    "promo": true
-   },
    "cartofi": {
     "price": 3.72,
     "offerTitle": "Cartofi albi sac 5 kg",
     "offerPrice": 9.29,
     "promo": true
    },
-   "ardei": {
-    "price": 4.19,
-    "offerTitle": "Ardei kapia roșu per kg",
-    "offerPrice": 6.99,
-    "promo": true
-   },
    "ceapa": {
     "price": 1.59,
     "offerTitle": "Ceapă galbenă per kg",
     "offerPrice": 1.59,
-    "promo": true
-   },
-   "castraveti": {
-    "price": 1.28,
-    "offerTitle": "Castraveți cornișon sac 3 kg",
-    "offerPrice": 10.99,
-    "promo": true
-   },
-   "salata": {
-    "price": 6.99,
-    "offerTitle": "Salată Iceberg per buc.",
-    "offerPrice": 6.99,
     "promo": true
    },
    "banane": {
@@ -80,28 +44,10 @@
     "offerPrice": 11.99,
     "promo": true
    },
-   "lamaie": {
-    "price": 2.75,
-    "offerTitle": "Lămâi per kg",
-    "offerPrice": 5.49,
-    "promo": true
-   },
    "unt": {
     "price": 4.19,
     "offerTitle": "PILOS Unt de masă 200 g",
     "offerPrice": 4.19,
-    "promo": true
-   },
-   "smantana": {
-    "price": 3.2,
-    "offerTitle": "PILOS Smântână 1 kg",
-    "offerPrice": 7.99,
-    "promo": true
-   },
-   "cascaval": {
-    "price": 11.99,
-    "offerTitle": "Pilos Cașcaval Rucăr 500 g",
-    "offerPrice": 14.99,
     "promo": true
    },
    "porc": {
@@ -111,21 +57,9 @@
     "promo": true
    },
    "carnati": {
-    "price": 5.5,
-    "offerTitle": "Baroni Cârnați Oltenești 400 g",
-    "offerPrice": 10.99,
-    "promo": true
-   },
-   "fasole_verde": {
-    "price": 4.82,
-    "offerTitle": "FRESHONA Fasole verde tăiată 450 g",
-    "offerPrice": 2.89,
-    "promo": true
-   },
-   "vinete": {
-    "price": 10.64,
-    "offerTitle": "FRESHONA Vinete coapte tocate 450 g",
-    "offerPrice": 4.79,
+    "price": 7.62,
+    "offerTitle": "Cârnați sticks 120 g",
+    "offerPrice": 4.57,
     "promo": true
    }
   },
@@ -272,19 +206,19 @@
  },
  "stats": {
   "lidl": {
-   "offersFound": 287,
-   "matched": 21,
+   "offersFound": 226,
+   "matched": 10,
    "leaflets": [
     "cont-my-lidl-protectia-datelor-cookies",
     "protectia-datelor-in-magazine",
     "nota-de-informare-serviciul-clien-i",
     "informare-supravegherea-video",
-    "catalogul-saptamanal-de-luni-28-09-pana-duminica-04-10",
-    "catalogul-saptamanal-de-luni-05-10-pana-duminica-11-10"
+    "catalogul-saptamanal-de-luni-05-10-pana-duminica-11-10",
+    "catalog-15-retete-rapide"
    ]
   },
   "kaufland": {
-   "offersFound": 520,
+   "offersFound": 517,
    "matched": 23,
    "leaflets": [
     "RO_ro_leaflet6_3400_RO40-OC2",
