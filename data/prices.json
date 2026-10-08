@@ -1,11 +1,23 @@
 {
- "updated": "2026-10-07T11:03:39.201Z",
+ "updated": "2026-10-08T11:21:19.907Z",
  "stores": {
   "lidl": {
    "piept_pui": {
     "price": 29.9,
     "offerTitle": "Piept de pui, dezosat, fără piele per 100 g",
     "offerPrice": 2.99,
+    "promo": true
+   },
+   "pulpe_pui": {
+    "price": 7.92,
+    "offerTitle": "Pulpe de pui intregi XXL per kg",
+    "offerPrice": 9.9,
+    "promo": true
+   },
+   "somon": {
+    "price": 63.96,
+    "offerTitle": "Somon norvegian file 125 g",
+    "offerPrice": 15.99,
     "promo": true
    },
    "oua": {
@@ -20,16 +32,28 @@
     "offerPrice": 7.49,
     "promo": true
    },
+   "paine": {
+    "price": 5.61,
+    "offerTitle": "Pâine rustică cu fulgi de cartofi 400 g",
+    "offerPrice": 4.49,
+    "promo": true
+   },
    "cartofi": {
-    "price": 3.72,
-    "offerTitle": "Cartofi albi sac 5 kg",
-    "offerPrice": 9.29,
+    "price": 2.98,
+    "offerTitle": "Cartofi albi per kg",
+    "offerPrice": 1.49,
     "promo": true
    },
    "ceapa": {
     "price": 1.59,
     "offerTitle": "Ceapă galbenă per kg",
     "offerPrice": 1.59,
+    "promo": true
+   },
+   "morcovi": {
+    "price": 1.99,
+    "offerTitle": "Morcovi per kg",
+    "offerPrice": 1.99,
     "promo": true
    },
    "banane": {
@@ -39,9 +63,15 @@
     "promo": true
    },
    "avocado": {
-    "price": 6.85,
+    "price": 6.57,
     "offerTitle": "Avocado Hass plasă 700 g",
-    "offerPrice": 11.99,
+    "offerPrice": 11.49,
+    "promo": true
+   },
+   "lamaie": {
+    "price": 2.75,
+    "offerTitle": "Lămâi per kg",
+    "offerPrice": 5.49,
     "promo": true
    },
    "unt": {
@@ -56,16 +86,40 @@
     "offerPrice": 6.99,
     "promo": true
    },
+   "crema_branza": {
+    "price": 7.99,
+    "offerTitle": "Cremă de brânză 250 g",
+    "offerPrice": 9.99,
+    "promo": true
+   },
    "porc": {
-    "price": 18.9,
-    "offerTitle": "Spată de porc fără os per 100 g",
-    "offerPrice": 1.89,
+    "price": 14.9,
+    "offerTitle": "Pulpă de porc, fără os per 100 g",
+    "offerPrice": 1.49,
+    "promo": true
+   },
+   "bacon": {
+    "price": 8.99,
+    "offerTitle": "Bacon de porc, afumat, feliat 200 g",
+    "offerPrice": 8.99,
     "promo": true
    },
    "carnati": {
-    "price": 5.99,
-    "offerTitle": "PIKOK Cârnați cabanoși 350 g / 1 kg = 29,97 lei",
-    "offerPrice": 10.49,
+    "price": 7.62,
+    "offerTitle": "Cârnați sticks 120 g",
+    "offerPrice": 4.57,
+    "promo": true
+   },
+   "telina": {
+    "price": 2.99,
+    "offerTitle": "Țelină cu frunze per buc.",
+    "offerPrice": 2.99,
+    "promo": true
+   },
+   "varza": {
+    "price": 2.24,
+    "offerTitle": "Varză albă per kg",
+    "offerPrice": 1.49,
     "promo": true
    }
   },
@@ -230,8 +284,8 @@
  },
  "stats": {
   "lidl": {
-   "offersFound": 184,
-   "matched": 11,
+   "offersFound": 256,
+   "matched": 20,
    "leaflets": [
     "cont-my-lidl-protectia-datelor-cookies",
     "protectia-datelor-in-magazine",
@@ -242,7 +296,7 @@
    ]
   },
   "kaufland": {
-   "offersFound": 369,
+   "offersFound": 366,
    "matched": 26,
    "leaflets": [
     "RO_ro_leaflet6_3400_RO41-OC2",
