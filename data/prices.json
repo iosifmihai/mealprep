@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-08T11:21:19.907Z",
+ "updated": "2026-10-09T11:18:52.615Z",
  "stores": {
   "lidl": {
    "piept_pui": {
@@ -86,12 +86,6 @@
     "offerPrice": 6.99,
     "promo": true
    },
-   "crema_branza": {
-    "price": 7.99,
-    "offerTitle": "Cremă de brânză 250 g",
-    "offerPrice": 9.99,
-    "promo": true
-   },
    "porc": {
     "price": 14.9,
     "offerTitle": "Pulpă de porc, fără os per 100 g",
@@ -120,6 +114,12 @@
     "price": 2.24,
     "offerTitle": "Varză albă per kg",
     "offerPrice": 1.49,
+    "promo": true
+   },
+   "nuci": {
+    "price": 18.99,
+    "offerTitle": "Favorina Nuci / Migdale glazurate 200 g",
+    "offerPrice": 18.99,
     "promo": true
    }
   },
@@ -284,7 +284,7 @@
  },
  "stats": {
   "lidl": {
-   "offersFound": 256,
+   "offersFound": 279,
    "matched": 20,
    "leaflets": [
     "cont-my-lidl-protectia-datelor-cookies",
@@ -296,7 +296,7 @@
    ]
   },
   "kaufland": {
-   "offersFound": 366,
+   "offersFound": 362,
    "matched": 26,
    "leaflets": [
     "RO_ro_leaflet6_3400_RO41-OC2",
