@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-09T11:18:52.615Z",
+ "updated": "2026-10-10T10:35:49.355Z",
  "stores": {
   "lidl": {
    "piept_pui": {
@@ -30,6 +30,12 @@
     "price": 4.99,
     "offerTitle": "PILOS Lapte de consum 1,5 L",
     "offerPrice": 7.49,
+    "promo": true
+   },
+   "fasole": {
+    "price": 4,
+    "offerTitle": "CAMPO LARGO Fasole albă bob mediu 1 kg",
+    "offerPrice": 9.99,
     "promo": true
    },
    "paine": {
@@ -284,8 +290,8 @@
  },
  "stats": {
   "lidl": {
-   "offersFound": 279,
-   "matched": 20,
+   "offersFound": 286,
+   "matched": 21,
    "leaflets": [
     "cont-my-lidl-protectia-datelor-cookies",
     "protectia-datelor-in-magazine",
