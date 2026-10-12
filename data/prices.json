@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-11T10:48:23.714Z",
+ "updated": "2026-10-12T11:56:59.552Z",
  "stores": {
   "lidl": {
    "piept_pui": {
@@ -12,24 +12,6 @@
     "price": 7.92,
     "offerTitle": "Pulpe de pui intregi XXL per kg",
     "offerPrice": 9.9,
-    "promo": true
-   },
-   "somon": {
-    "price": 63.96,
-    "offerTitle": "Somon norvegian file 125 g",
-    "offerPrice": 15.99,
-    "promo": true
-   },
-   "oua": {
-    "price": 8.66,
-    "offerTitle": "Ouă M Sol 30 buc.",
-    "offerPrice": 25.99,
-    "promo": true
-   },
-   "lapte": {
-    "price": 4.99,
-    "offerTitle": "PILOS Lapte de consum 1,5 L",
-    "offerPrice": 7.49,
     "promo": true
    },
    "fasole": {
@@ -51,27 +33,15 @@
     "promo": true
    },
    "ceapa": {
-    "price": 1.59,
-    "offerTitle": "Ceapă galbenă per kg",
-    "offerPrice": 1.59,
+    "price": 2.39,
+    "offerTitle": "Ceapă roșie per kg",
+    "offerPrice": 2.39,
     "promo": true
    },
    "morcovi": {
     "price": 1.99,
     "offerTitle": "Morcovi per kg",
     "offerPrice": 1.99,
-    "promo": true
-   },
-   "banane": {
-    "price": 7.13,
-    "offerTitle": "Banane per kg",
-    "offerPrice": 6.99,
-    "promo": true
-   },
-   "avocado": {
-    "price": 6.57,
-    "offerTitle": "Avocado Hass plasă 700 g",
-    "offerPrice": 11.49,
     "promo": true
    },
    "lamaie": {
@@ -81,33 +51,15 @@
     "promo": true
    },
    "unt": {
-    "price": 4.19,
-    "offerTitle": "PILOS Unt de masă 200 g",
-    "offerPrice": 4.19,
-    "promo": true
-   },
-   "smantana": {
-    "price": 6.99,
-    "offerTitle": "PILOS Smântână 400 g",
-    "offerPrice": 6.99,
+    "price": 11.99,
+    "offerTitle": "Favorina Furescuri cu unt 300 g",
+    "offerPrice": 17.99,
     "promo": true
    },
    "porc": {
     "price": 14.9,
     "offerTitle": "Pulpă de porc, fără os per 100 g",
     "offerPrice": 1.49,
-    "promo": true
-   },
-   "bacon": {
-    "price": 8.99,
-    "offerTitle": "Bacon de porc, afumat, feliat 200 g",
-    "offerPrice": 8.99,
-    "promo": true
-   },
-   "carnati": {
-    "price": 7.62,
-    "offerTitle": "Cârnați sticks 120 g",
-    "offerPrice": 4.57,
     "promo": true
    },
    "telina": {
@@ -290,15 +242,15 @@
  },
  "stats": {
   "lidl": {
-   "offersFound": 287,
-   "matched": 21,
+   "offersFound": 286,
+   "matched": 13,
    "leaflets": [
     "cont-my-lidl-protectia-datelor-cookies",
     "protectia-datelor-in-magazine",
     "nota-de-informare-serviciul-clien-i",
     "informare-supravegherea-video",
-    "catalogul-saptamanal-de-luni-05-10-pana-duminica-11-10",
-    "catalogul-saptamanal-de-luni-12-10-pana-duminica-18-10"
+    "catalogul-saptamanal-de-luni-12-10-pana-duminica-18-10",
+    "catalog-15-retete-rapide"
    ]
   },
   "kaufland": {
