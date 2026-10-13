@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-12T11:56:59.552Z",
+ "updated": "2026-10-13T11:45:59.670Z",
  "stores": {
   "lidl": {
    "piept_pui": {
@@ -30,6 +30,12 @@
     "price": 2.98,
     "offerTitle": "Cartofi albi per kg",
     "offerPrice": 1.49,
+    "promo": true
+   },
+   "broccoli": {
+    "price": 6.99,
+    "offerTitle": "Broccoli 500 g",
+    "offerPrice": 6.99,
     "promo": true
    },
    "ceapa": {
@@ -242,8 +248,8 @@
  },
  "stats": {
   "lidl": {
-   "offersFound": 286,
-   "matched": 13,
+   "offersFound": 306,
+   "matched": 14,
    "leaflets": [
     "cont-my-lidl-protectia-datelor-cookies",
     "protectia-datelor-in-magazine",
