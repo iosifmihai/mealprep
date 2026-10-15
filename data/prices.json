@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-14T09:29:54.148Z",
+ "updated": "2026-10-15T09:08:15.260Z",
  "stores": {
   "lidl": {
    "piept_pui": {
@@ -22,7 +22,7 @@
    },
    "ton": {
     "price": 34.27,
-    "offerTitle": "File de ton galben în ulei de măsline 210 g",
+    "offerTitle": "DELUXE File de ton galben în ulei de măsline 210 g",
     "offerPrice": 29.99,
     "promo": true
    },
@@ -68,12 +68,6 @@
     "offerPrice": 4.29,
     "promo": true
    },
-   "lamaie": {
-    "price": 2.75,
-    "offerTitle": "Lămâi per kg",
-    "offerPrice": 5.49,
-    "promo": true
-   },
    "unt": {
     "price": 11.99,
     "offerTitle": "Favorina Furescuri cu unt 300 g",
@@ -84,6 +78,12 @@
     "price": 14.9,
     "offerTitle": "Pulpă de porc, fără os per 100 g",
     "offerPrice": 1.49,
+    "promo": true
+   },
+   "carnati": {
+    "price": 6.8,
+    "offerTitle": "Cârnați Thuringer I.G.P. pentru grătar 500 g",
+    "offerPrice": 16.99,
     "promo": true
    },
    "ciuperci": {
@@ -209,9 +209,9 @@
     "promo": true
    },
    "ceapa": {
-    "price": 1.79,
+    "price": 1.59,
     "offerTitle": "Ceapă galbenă calitatea I\nkg kg",
-    "offerPrice": 1.79,
+    "offerPrice": 1.59,
     "promo": true
    },
    "rosii": {
@@ -302,7 +302,7 @@
  },
  "stats": {
   "lidl": {
-   "offersFound": 314,
+   "offersFound": 327,
    "matched": 18,
    "leaflets": [
     "cont-my-lidl-protectia-datelor-cookies",
