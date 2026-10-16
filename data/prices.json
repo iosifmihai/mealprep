@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-15T09:08:15.260Z",
+ "updated": "2026-10-16T09:00:40.217Z",
  "stores": {
   "lidl": {
    "piept_pui": {
@@ -75,9 +75,9 @@
     "promo": true
    },
    "porc": {
-    "price": 14.9,
+    "price": 13.9,
     "offerTitle": "Pulpă de porc, fără os per 100 g",
-    "offerPrice": 1.49,
+    "offerPrice": 1.39,
     "promo": true
    },
    "carnati": {
@@ -105,9 +105,9 @@
     "promo": true
    },
    "nuci": {
-    "price": 17.77,
-    "offerTitle": "Mix de nuci și fructe 225 g",
-    "offerPrice": 19.99,
+    "price": 10.49,
+    "offerTitle": "ALESTO Nuci pecan 200 g",
+    "offerPrice": 10.49,
     "promo": true
    }
   },
@@ -302,7 +302,7 @@
  },
  "stats": {
   "lidl": {
-   "offersFound": 327,
+   "offersFound": 334,
    "matched": 18,
    "leaflets": [
     "cont-my-lidl-protectia-datelor-cookies",
@@ -314,7 +314,7 @@
    ]
   },
   "kaufland": {
-   "offersFound": 416,
+   "offersFound": 412,
    "matched": 31,
    "leaflets": [
     "RO_ro_leaflet6_3400_RO42-OC2",
