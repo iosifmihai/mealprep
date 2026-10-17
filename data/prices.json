@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-16T09:00:40.217Z",
+ "updated": "2026-10-17T08:32:45.318Z",
  "stores": {
   "lidl": {
    "piept_pui": {
@@ -214,12 +214,6 @@
     "offerPrice": 1.59,
     "promo": true
    },
-   "rosii": {
-    "price": 9.99,
-    "offerTitle": "Roșii ciorchine calitatea I\nkg kg",
-    "offerPrice": 9.99,
-    "promo": true
-   },
    "castraveti": {
     "price": 1.75,
     "offerTitle": "Castraveți Cornichon cal.I\n3 kg 3 kg",
@@ -302,7 +296,7 @@
  },
  "stats": {
   "lidl": {
-   "offersFound": 334,
+   "offersFound": 331,
    "matched": 18,
    "leaflets": [
     "cont-my-lidl-protectia-datelor-cookies",
@@ -314,8 +308,8 @@
    ]
   },
   "kaufland": {
-   "offersFound": 412,
-   "matched": 31,
+   "offersFound": 410,
+   "matched": 30,
    "leaflets": [
     "RO_ro_leaflet6_3400_RO42-OC2",
     "RO_ro_Magazine3_3400_RO42-OC3",
