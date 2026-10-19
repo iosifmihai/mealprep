@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-18T08:50:29.797Z",
+ "updated": "2026-10-19T09:52:27.063Z",
  "stores": {
   "lidl": {
    "piept_pui": {
@@ -9,9 +9,9 @@
     "promo": true
    },
    "pulpe_pui": {
-    "price": 7.92,
-    "offerTitle": "Pulpe de pui intregi XXL per kg",
-    "offerPrice": 9.9,
+    "price": 14.32,
+    "offerTitle": "Pulpe de pui dezosate per 100 g",
+    "offerPrice": 1.79,
     "promo": true
    },
    "somon": {
@@ -26,22 +26,10 @@
     "offerPrice": 29.99,
     "promo": true
    },
-   "fasole": {
-    "price": 4,
-    "offerTitle": "CAMPO LARGO Fasole albă bob mediu 1 kg",
-    "offerPrice": 9.99,
-    "promo": true
-   },
-   "paine": {
-    "price": 5.61,
-    "offerTitle": "Pâine rustică cu fulgi de cartofi 400 g",
-    "offerPrice": 4.49,
-    "promo": true
-   },
    "cartofi": {
-    "price": 2.98,
-    "offerTitle": "Cartofi albi per kg",
-    "offerPrice": 1.49,
+    "price": 5.99,
+    "offerTitle": "Cartofi albi spălați pungă 3 kg",
+    "offerPrice": 8.99,
     "promo": true
    },
    "broccoli": {
@@ -54,12 +42,6 @@
     "price": 1.59,
     "offerTitle": "Ceapă galbenă per kg",
     "offerPrice": 1.59,
-    "promo": true
-   },
-   "morcovi": {
-    "price": 1.99,
-    "offerTitle": "Morcovi per kg",
-    "offerPrice": 1.99,
     "promo": true
    },
    "avocado": {
@@ -75,9 +57,9 @@
     "promo": true
    },
    "porc": {
-    "price": 13.9,
-    "offerTitle": "Pulpă de porc, fără os per 100 g",
-    "offerPrice": 1.39,
+    "price": 18.9,
+    "offerTitle": "Spată de porc fără os per 100 g",
+    "offerPrice": 1.89,
     "promo": true
    },
    "carnati": {
@@ -90,18 +72,6 @@
     "price": 6.99,
     "offerTitle": "Ciuperci Pleurotus caserolă 500 g / 1 kg = 13,98 lei",
     "offerPrice": 6.99,
-    "promo": true
-   },
-   "telina": {
-    "price": 2.99,
-    "offerTitle": "Țelină cu frunze per buc.",
-    "offerPrice": 2.99,
-    "promo": true
-   },
-   "varza": {
-    "price": 2.24,
-    "offerTitle": "Varză albă per kg",
-    "offerPrice": 1.49,
     "promo": true
    },
    "nuci": {
@@ -296,15 +266,15 @@
  },
  "stats": {
   "lidl": {
-   "offersFound": 332,
-   "matched": 18,
+   "offersFound": 312,
+   "matched": 13,
    "leaflets": [
     "cont-my-lidl-protectia-datelor-cookies",
     "protectia-datelor-in-magazine",
     "nota-de-informare-serviciul-clien-i",
     "informare-supravegherea-video",
-    "catalogul-saptamanal-de-luni-12-10-pana-duminica-18-10",
-    "catalogul-saptamanal-de-luni-19-10-pana-duminica-25-10"
+    "catalogul-saptamanal-de-luni-19-10-pana-duminica-25-10",
+    "catalogul-deluxe"
    ]
   },
   "kaufland": {
