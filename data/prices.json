@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-19T09:52:27.063Z",
+ "updated": "2026-10-20T09:24:48.716Z",
  "stores": {
   "lidl": {
    "piept_pui": {
@@ -24,6 +24,12 @@
     "price": 34.27,
     "offerTitle": "DELUXE File de ton galben în ulei de măsline 210 g",
     "offerPrice": 29.99,
+    "promo": true
+   },
+   "paine": {
+    "price": 6.24,
+    "offerTitle": "Pâine Durum 400 g",
+    "offerPrice": 4.99,
     "promo": true
    },
    "cartofi": {
@@ -72,6 +78,12 @@
     "price": 6.99,
     "offerTitle": "Ciuperci Pleurotus caserolă 500 g / 1 kg = 13,98 lei",
     "offerPrice": 6.99,
+    "promo": true
+   },
+   "varza": {
+    "price": 2.25,
+    "offerTitle": "Varză albă sac 10 kg",
+    "offerPrice": 14.99,
     "promo": true
    },
    "nuci": {
@@ -190,18 +202,6 @@
     "offerPrice": 14.99,
     "promo": true
    },
-   "avocado": {
-    "price": 5,
-    "offerTitle": "Avocado ready-to-eat\n2 buc 2 bucăţi",
-    "offerPrice": 9.99,
-    "promo": true
-   },
-   "lamaie": {
-    "price": 2.75,
-    "offerTitle": "Lămâi kg\nNerec.consumul cojii kg",
-    "offerPrice": 5.49,
-    "promo": true
-   },
    "unt": {
     "price": 8.19,
     "offerTitle": "Linco aluat cu unt\npentru croissant 300 g",
@@ -266,8 +266,8 @@
  },
  "stats": {
   "lidl": {
-   "offersFound": 312,
-   "matched": 13,
+   "offersFound": 317,
+   "matched": 15,
    "leaflets": [
     "cont-my-lidl-protectia-datelor-cookies",
     "protectia-datelor-in-magazine",
@@ -278,8 +278,8 @@
    ]
   },
   "kaufland": {
-   "offersFound": 410,
-   "matched": 30,
+   "offersFound": 407,
+   "matched": 28,
    "leaflets": [
     "RO_ro_leaflet6_3400_RO42-OC2",
     "RO_ro_Magazine3_3400_RO42-OC3",
