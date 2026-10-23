@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-22T09:23:41.021Z",
+ "updated": "2026-10-23T09:20:09.121Z",
  "stores": {
   "lidl": {
    "piept_pui": {
@@ -24,6 +24,18 @@
     "price": 34.27,
     "offerTitle": "DELUXE File de ton galben în ulei de măsline 210 g",
     "offerPrice": 29.99,
+    "promo": true
+   },
+   "mozzarella": {
+    "price": 6.41,
+    "offerTitle": "DELUXE Focaccia cu mozzarella, ciuperci și sos de trufe 390 g",
+    "offerPrice": 19.99,
+    "promo": true
+   },
+   "orez": {
+    "price": 7.99,
+    "offerTitle": "GOLDEN SUN Orez Basmati 1 kg",
+    "offerPrice": 7.99,
     "promo": true
    },
    "paine": {
@@ -58,7 +70,7 @@
    },
    "avocado": {
     "price": 3.49,
-    "offerTitle": "Avocado per buc.",
+    "offerTitle": "Avocado Hass per buc.",
     "offerPrice": 3.49,
     "promo": true
    },
@@ -78,6 +90,12 @@
     "price": 6.39,
     "offerTitle": "MILBONA Unt irlandez 250 g",
     "offerPrice": 7.99,
+    "promo": true
+   },
+   "crema_branza": {
+    "price": 9.33,
+    "offerTitle": "Cremă de brânză XL 300 g",
+    "offerPrice": 13.99,
     "promo": true
    },
    "carne_vita": {
@@ -290,8 +308,8 @@
  },
  "stats": {
   "lidl": {
-   "offersFound": 383,
-   "matched": 21,
+   "offersFound": 417,
+   "matched": 24,
    "leaflets": [
     "cont-my-lidl-protectia-datelor-cookies",
     "protectia-datelor-in-magazine",
@@ -302,7 +320,7 @@
    ]
   },
   "kaufland": {
-   "offersFound": 362,
+   "offersFound": 359,
    "matched": 26,
    "leaflets": [
     "RO_ro_leaflet6_3400_RO43-OC2",
