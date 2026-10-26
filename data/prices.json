@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-25T09:08:13.794Z",
+ "updated": "2026-10-26T10:05:37.000Z",
  "stores": {
   "lidl": {
    "piept_pui": {
@@ -12,18 +12,6 @@
     "price": 11.12,
     "offerTitle": "Pulpe inferioare de pui per 100 g",
     "offerPrice": 1.39,
-    "promo": true
-   },
-   "somon": {
-    "price": 28.32,
-    "offerTitle": "Somon sălbatic în foietaj 300 g",
-    "offerPrice": 16.99,
-    "promo": true
-   },
-   "ton": {
-    "price": 34.27,
-    "offerTitle": "DELUXE File de ton galben în ulei de măsline 210 g",
-    "offerPrice": 29.99,
     "promo": true
    },
    "mozzarella": {
@@ -45,9 +33,9 @@
     "promo": true
    },
    "cartofi": {
-    "price": 5.99,
-    "offerTitle": "Cartofi albi spălați pungă 3 kg",
-    "offerPrice": 8.99,
+    "price": 6.33,
+    "offerTitle": "Cartofi roșii pungă 3 kg",
+    "offerPrice": 9.49,
     "promo": true
    },
    "broccoli": {
@@ -57,9 +45,9 @@
     "promo": true
    },
    "ceapa": {
-    "price": 1.59,
-    "offerTitle": "Ceapă galbenă per kg",
-    "offerPrice": 1.59,
+    "price": 1.6,
+    "offerTitle": "Ceapă galbenă sac 5 kg",
+    "offerPrice": 7.99,
     "promo": true
    },
    "rosii": {
@@ -70,7 +58,7 @@
    },
    "avocado": {
     "price": 3.49,
-    "offerTitle": "Avocado Hass per buc.",
+    "offerTitle": "Avocado per buc.",
     "offerPrice": 3.49,
     "promo": true
    },
@@ -129,9 +117,9 @@
     "promo": true
    },
    "ciuperci": {
-    "price": 6.99,
-    "offerTitle": "Ciuperci Pleurotus caserolă 500 g / 1 kg = 13,98 lei",
-    "offerPrice": 6.99,
+    "price": 7,
+    "offerTitle": "Ciuperci grill Champignon brune caserolă 1 kg",
+    "offerPrice": 13.99,
     "promo": true
    },
    "varza": {
@@ -141,9 +129,9 @@
     "promo": true
    },
    "nuci": {
-    "price": 10.49,
-    "offerTitle": "ALESTO Nuci pecan 200 g",
-    "offerPrice": 10.49,
+    "price": 18.99,
+    "offerTitle": "FAVORINA Nuci / Migdale glazurate 200 g",
+    "offerPrice": 18.99,
     "promo": true
    }
   },
@@ -308,15 +296,15 @@
  },
  "stats": {
   "lidl": {
-   "offersFound": 410,
-   "matched": 24,
+   "offersFound": 402,
+   "matched": 22,
    "leaflets": [
     "cont-my-lidl-protectia-datelor-cookies",
     "protectia-datelor-in-magazine",
     "nota-de-informare-serviciul-clien-i",
     "informare-supravegherea-video",
-    "catalogul-saptamanal-de-luni-19-10-pana-duminica-25-10",
-    "catalogul-saptamanal-de-luni-26-10-pana-duminica-01-11"
+    "catalogul-saptamanal-de-luni-26-10-pana-duminica-01-11",
+    "catalogul-deluxe"
    ]
   },
   "kaufland": {
