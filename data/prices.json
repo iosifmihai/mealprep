@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-28T10:33:41.928Z",
+ "updated": "2026-10-29T10:52:50.109Z",
  "stores": {
   "lidl": {
    "piept_pui": {
@@ -68,16 +68,16 @@
     "offerPrice": 3.49,
     "promo": true
    },
-   "lamaie": {
-    "price": 6.99,
-    "offerTitle": "Bio lămâi plasă 500 g",
-    "offerPrice": 6.99,
-    "promo": true
-   },
    "mazare": {
     "price": 5.81,
     "offerTitle": "FRESHONA Mazăre foarte fină 425 ml",
     "offerPrice": 3.29,
+    "promo": true
+   },
+   "miere": {
+    "price": 29.98,
+    "offerTitle": "Miere Cremă cu fructe 200 g",
+    "offerPrice": 14.99,
     "promo": true
    },
    "unt": {
@@ -116,18 +116,6 @@
     "offerPrice": 9.99,
     "promo": true
    },
-   "ceapa_verde": {
-    "price": 1.49,
-    "offerTitle": "Ceapă verde per legătură",
-    "offerPrice": 1.49,
-    "promo": true
-   },
-   "ciuperci": {
-    "price": 7,
-    "offerTitle": "Ciuperci grill Champignon brune caserolă 1 kg",
-    "offerPrice": 13.99,
-    "promo": true
-   },
    "varza": {
     "price": 2.25,
     "offerTitle": "Varză albă sac 10 kg",
@@ -142,6 +130,12 @@
    }
   },
   "kaufland": {
+   "piept_pui": {
+    "price": 32.79,
+    "offerTitle": "Gustavi piept de pui dezosat, fără piele\nhrănit cu porumb kg",
+    "offerPrice": 32.79,
+    "promo": true
+   },
    "pulpe_pui": {
     "price": 12.99,
     "offerTitle": "Gustavi Pulpe de pui cu spate\nkg kg",
@@ -227,9 +221,9 @@
     "promo": true
    },
    "pesto": {
-    "price": 17.46,
+    "price": 14.23,
     "offerTitle": "Basiron Prep. brânză vacă pesto roșu\n50% grăsime, 100 g 100 g",
-    "offerPrice": 9.19,
+    "offerPrice": 7.49,
     "promo": true
    },
    "smantana": {
@@ -278,8 +272,8 @@
  },
  "stats": {
   "lidl": {
-   "offersFound": 369,
-   "matched": 23,
+   "offersFound": 419,
+   "matched": 21,
    "leaflets": [
     "cont-my-lidl-protectia-datelor-cookies",
     "protectia-datelor-in-magazine",
@@ -290,8 +284,8 @@
    ]
   },
   "kaufland": {
-   "offersFound": 370,
-   "matched": 22,
+   "offersFound": 369,
+   "matched": 23,
    "leaflets": [
     "RO_ro_leaflet6_3400_RO44-OC2",
     "RO_ro_Magazine3_3400_RO44-OC3",
