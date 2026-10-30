@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-29T10:52:50.109Z",
+ "updated": "2026-10-30T10:51:04.595Z",
  "stores": {
   "lidl": {
    "piept_pui": {
@@ -272,7 +272,7 @@
  },
  "stats": {
   "lidl": {
-   "offersFound": 419,
+   "offersFound": 422,
    "matched": 21,
    "leaflets": [
     "cont-my-lidl-protectia-datelor-cookies",
@@ -284,7 +284,7 @@
    ]
   },
   "kaufland": {
-   "offersFound": 369,
+   "offersFound": 368,
    "matched": 23,
    "leaflets": [
     "RO_ro_leaflet6_3400_RO44-OC2",
