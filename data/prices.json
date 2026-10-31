@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-30T10:51:04.595Z",
+ "updated": "2026-10-31T10:22:30.499Z",
  "stores": {
   "lidl": {
    "piept_pui": {
@@ -114,6 +114,12 @@
     "price": 9.99,
     "offerTitle": "Creveți prefierți",
     "offerPrice": 9.99,
+    "promo": true
+   },
+   "ciuperci": {
+    "price": 9.65,
+    "offerTitle": "Merdenea cu varză și ciuperci 155 g",
+    "offerPrice": 2.99,
     "promo": true
    },
    "varza": {
@@ -273,7 +279,7 @@
  "stats": {
   "lidl": {
    "offersFound": 422,
-   "matched": 21,
+   "matched": 22,
    "leaflets": [
     "cont-my-lidl-protectia-datelor-cookies",
     "protectia-datelor-in-magazine",
@@ -284,7 +290,7 @@
    ]
   },
   "kaufland": {
-   "offersFound": 368,
+   "offersFound": 365,
    "matched": 23,
    "leaflets": [
     "RO_ro_leaflet6_3400_RO44-OC2",
