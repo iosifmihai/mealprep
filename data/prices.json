@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-31T10:22:30.499Z",
+ "updated": "2026-11-01T11:15:23.926Z",
  "stores": {
   "lidl": {
    "piept_pui": {
@@ -278,7 +278,7 @@
  },
  "stats": {
   "lidl": {
-   "offersFound": 422,
+   "offersFound": 421,
    "matched": 22,
    "leaflets": [
     "cont-my-lidl-protectia-datelor-cookies",
@@ -295,7 +295,10 @@
    "leaflets": [
     "RO_ro_leaflet6_3400_RO44-OC2",
     "RO_ro_Magazine3_3400_RO44-OC3",
-    "RO_ro_Wrapper2_3400_RO44-CL4"
+    "RO_ro_Wrapper2_3400_RO44-CL4",
+    "RO_ro_leaflet6_3400_RO45-OC2",
+    "RO_ro_Magazine3_3400_RO45-OC3",
+    "RO_ro_Magazine4_3400_RO45-OC4"
    ]
   }
  }
