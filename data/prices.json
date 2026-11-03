@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-02T12:21:38.897Z",
+ "updated": "2026-11-03T11:54:35.897Z",
  "stores": {
   "lidl": {
    "piept_pui": {
@@ -10,13 +10,13 @@
    },
    "mozzarella": {
     "price": 5,
-    "offerTitle": "MILBONA Mozzarella rasă 500 g",
+    "offerTitle": "Milbona Mozzarella rasă 500 g",
     "offerPrice": 19.99,
     "promo": true
    },
    "paine": {
     "price": 2.85,
-    "offerTitle": "Pâinea Campionilor 700 g",
+    "offerTitle": "- Pâinea Campionilor 700 g",
     "offerPrice": 3.99,
     "promo": true
    },
@@ -218,7 +218,7 @@
  },
  "stats": {
   "lidl": {
-   "offersFound": 336,
+   "offersFound": 308,
    "matched": 12,
    "leaflets": [
     "cont-my-lidl-protectia-datelor-cookies",
