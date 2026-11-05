@@ -1,11 +1,17 @@
 {
- "updated": "2026-11-04T12:06:05.736Z",
+ "updated": "2026-11-05T12:18:01.719Z",
  "stores": {
   "lidl": {
    "piept_pui": {
     "price": 29.9,
     "offerTitle": "Piept de pui, dezosat, fără piele per 100 g",
     "offerPrice": 2.99,
+    "promo": true
+   },
+   "curcan": {
+    "price": 14.45,
+    "offerTitle": "- Pulpe superioare de curcan per 100 g",
+    "offerPrice": 2.89,
     "promo": true
    },
    "somon": {
@@ -15,9 +21,9 @@
     "promo": true
    },
    "ton": {
-    "price": 33.98,
-    "offerTitle": "File de ton din Azore 120 g",
-    "offerPrice": 16.99,
+    "price": 29.99,
+    "offerTitle": "DELUXE File de ton alb în ulei de măsline 200 g",
+    "offerPrice": 24.99,
     "promo": true
    },
    "mozzarella": {
@@ -75,14 +81,14 @@
     "promo": true
    },
    "lamaie": {
-    "price": 2.93,
-    "offerTitle": "Lămâi plasă 750 g",
-    "offerPrice": 4.39,
+    "price": 2.5,
+    "offerTitle": "Lămâi 1 kg",
+    "offerPrice": 4.99,
     "promo": true
    },
    "miere": {
     "price": 29.98,
-    "offerTitle": "Miere Cremă cu fructe 200 g",
+    "offerTitle": "DELUXE Miere Cremă cu fructe 200 g",
     "offerPrice": 14.99,
     "promo": true
    },
@@ -221,9 +227,9 @@
     "promo": true
    },
    "ardei": {
-    "price": 11.99,
+    "price": 10.79,
     "offerTitle": "Ardei mix calitatea I 500g",
-    "offerPrice": 9.99,
+    "offerPrice": 8.99,
     "promo": true
    },
    "lamaie": {
@@ -257,9 +263,9 @@
     "promo": true
    },
    "carne_vita": {
-    "price": 30,
+    "price": 24.95,
     "offerTitle": "Irish Beef Carne de vită pentru gătit kg",
-    "offerPrice": 59.99,
+    "offerPrice": 49.9,
     "promo": true
    },
    "porc": {
@@ -296,8 +302,8 @@
  },
  "stats": {
   "lidl": {
-   "offersFound": 354,
-   "matched": 22,
+   "offersFound": 375,
+   "matched": 23,
    "leaflets": [
     "cont-my-lidl-protectia-datelor-cookies",
     "protectia-datelor-in-magazine",
