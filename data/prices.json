@@ -1,10 +1,10 @@
 {
- "updated": "2026-11-06T12:04:39.215Z",
+ "updated": "2026-11-07T11:02:08.056Z",
  "stores": {
   "lidl": {
    "piept_pui": {
     "price": 29.9,
-    "offerTitle": "Piept de pui, dezosat, fără piele per 100 g",
+    "offerTitle": "- Piept de pui, dezosat, fără piele per 100 g",
     "offerPrice": 2.99,
     "promo": true
    },
@@ -36,6 +36,12 @@
     "price": 13.99,
     "offerTitle": "Milbona Brânză feta Chalkidiki 200 g",
     "offerPrice": 13.99,
+    "promo": true
+   },
+   "fasole": {
+    "price": 6.38,
+    "offerTitle": "Fasole bătută 250 g",
+    "offerPrice": 3.99,
     "promo": true
    },
    "paine": {
@@ -302,8 +308,8 @@
  },
  "stats": {
   "lidl": {
-   "offersFound": 379,
-   "matched": 23,
+   "offersFound": 397,
+   "matched": 24,
    "leaflets": [
     "cont-my-lidl-protectia-datelor-cookies",
     "protectia-datelor-in-magazine",
@@ -314,7 +320,7 @@
    ]
   },
   "kaufland": {
-   "offersFound": 346,
+   "offersFound": 345,
    "matched": 26,
    "leaflets": [
     "RO_ro_leaflet6_3400_RO45-OC2",
