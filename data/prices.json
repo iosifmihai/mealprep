@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-08T11:15:37.753Z",
+ "updated": "2026-11-09T12:50:14.266Z",
  "stores": {
   "lidl": {
    "piept_pui": {
@@ -26,12 +26,6 @@
     "offerPrice": 24.99,
     "promo": true
    },
-   "mozzarella": {
-    "price": 5,
-    "offerTitle": "Milbona Mozzarella rasă 500 g",
-    "offerPrice": 19.99,
-    "promo": true
-   },
    "feta": {
     "price": 13.99,
     "offerTitle": "Milbona Brânză feta Chalkidiki 200 g",
@@ -45,15 +39,9 @@
     "promo": true
    },
    "paine": {
-    "price": 2.85,
-    "offerTitle": "- Pâinea Campionilor 700 g",
-    "offerPrice": 3.99,
-    "promo": true
-   },
-   "cartofi": {
-    "price": 3,
-    "offerTitle": "Cartofi albi sac 10 kg. / 1 kg = 1,49 lei",
-    "offerPrice": 14.99,
+    "price": 5.71,
+    "offerTitle": "Camara Noastra Pâine albă cu maia 700 g",
+    "offerPrice": 7.99,
     "promo": true
    },
    "ardei": {
@@ -75,9 +63,9 @@
     "promo": true
    },
    "salata": {
-    "price": 2.29,
-    "offerTitle": "Salată verde per buc.",
-    "offerPrice": 2.29,
+    "price": 5.49,
+    "offerTitle": "Salată Iceberg per buc.",
+    "offerPrice": 5.49,
     "promo": true
    },
    "avocado": {
@@ -87,27 +75,21 @@
     "promo": true
    },
    "lamaie": {
-    "price": 2.5,
-    "offerTitle": "Lămâi 1 kg",
-    "offerPrice": 4.99,
+    "price": 2.93,
+    "offerTitle": "Lămâi plasă 750 g",
+    "offerPrice": 4.39,
     "promo": true
    },
    "miere": {
-    "price": 29.98,
-    "offerTitle": "DELUXE Miere Cremă cu fructe 200 g",
-    "offerPrice": 14.99,
+    "price": 36.35,
+    "offerTitle": "Deluxe Miere polifloră cu nuci 440 g",
+    "offerPrice": 39.99,
     "promo": true
    },
    "unt": {
     "price": 6.3,
     "offerTitle": "- Croissant cu unt 20 g",
     "offerPrice": 0.63,
-    "promo": true
-   },
-   "crema_branza": {
-    "price": 15.99,
-    "offerTitle": "Cremă de brânză pentru cuptor 150 g / 175 g",
-    "offerPrice": 11.99,
     "promo": true
    },
    "porc": {
@@ -117,9 +99,9 @@
     "promo": true
    },
    "carnati": {
-    "price": 14.98,
-    "offerTitle": "Cârnați sticks 120 g + 30 g",
-    "offerPrice": 8.99,
+    "price": 19.98,
+    "offerTitle": "DULANO SELECTION Cârnați cabanos de porc 100 g",
+    "offerPrice": 9.99,
     "promo": true
    },
    "creveti": {
@@ -286,12 +268,6 @@
     "offerPrice": 19.99,
     "promo": true
    },
-   "creveti": {
-    "price": 22.65,
-    "offerTitle": "Ocean Fish Creveți prefierți 20/30\n300g 300g",
-    "offerPrice": 16.99,
-    "promo": true
-   },
    "ciuperci": {
     "price": 6.99,
     "offerTitle": "Ciuperci Champignon calitatea I\ncaserolă 500g caserolă 500g",
@@ -308,20 +284,20 @@
  },
  "stats": {
   "lidl": {
-   "offersFound": 398,
-   "matched": 24,
+   "offersFound": 375,
+   "matched": 21,
    "leaflets": [
     "cont-my-lidl-protectia-datelor-cookies",
     "protectia-datelor-in-magazine",
     "nota-de-informare-serviciul-clien-i",
     "informare-supravegherea-video",
-    "catalogul-saptamanal-de-luni-02-11-pana-duminica-08-11",
-    "catalogul-saptamanal-de-luni-09-11-pana-duminica-15-11"
+    "catalogul-saptamanal-de-luni-09-11-pana-duminica-15-11",
+    "catalogul-deluxe"
    ]
   },
   "kaufland": {
-   "offersFound": 345,
-   "matched": 26,
+   "offersFound": 344,
+   "matched": 25,
    "leaflets": [
     "RO_ro_leaflet6_3400_RO45-OC2",
     "RO_ro_Magazine3_3400_RO45-OC3",
