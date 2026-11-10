@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-09T12:50:14.266Z",
+ "updated": "2026-11-10T12:37:14.645Z",
  "stores": {
   "lidl": {
    "piept_pui": {
@@ -94,7 +94,7 @@
    },
    "porc": {
     "price": 18.9,
-    "offerTitle": "Spată de porc fără os per 100 g",
+    "offerTitle": "- Spată de porc fără os per 100 g",
     "offerPrice": 1.89,
     "promo": true
    },
@@ -284,7 +284,7 @@
  },
  "stats": {
   "lidl": {
-   "offersFound": 375,
+   "offersFound": 380,
    "matched": 21,
    "leaflets": [
     "cont-my-lidl-protectia-datelor-cookies",
@@ -296,7 +296,7 @@
    ]
   },
   "kaufland": {
-   "offersFound": 344,
+   "offersFound": 341,
    "matched": 25,
    "leaflets": [
     "RO_ro_leaflet6_3400_RO45-OC2",
