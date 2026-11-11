@@ -1,11 +1,11 @@
 {
- "updated": "2026-11-10T12:37:14.645Z",
+ "updated": "2026-11-11T11:51:37.829Z",
  "stores": {
   "lidl": {
    "piept_pui": {
-    "price": 29.9,
-    "offerTitle": "- Piept de pui, dezosat, fără piele per 100 g",
-    "offerPrice": 2.99,
+    "price": 19.18,
+    "offerTitle": "- Carne tocată din piept și pulpă de pui 500 g",
+    "offerPrice": 9.59,
     "promo": true
    },
    "curcan": {
@@ -26,10 +26,28 @@
     "offerPrice": 24.99,
     "promo": true
    },
+   "iaurt_grec": {
+    "price": 3.99,
+    "offerTitle": "Pilos Iaurt cremos în stil grecesc 400 g",
+    "offerPrice": 3.99,
+    "promo": true
+   },
    "feta": {
     "price": 13.99,
     "offerTitle": "Milbona Brânză feta Chalkidiki 200 g",
     "offerPrice": 13.99,
+    "promo": true
+   },
+   "lapte": {
+    "price": 4.29,
+    "offerTitle": "Pilos Lapte de consum 1 L",
+    "offerPrice": 4.29,
+    "promo": true
+   },
+   "parmezan": {
+    "price": 18.33,
+    "offerTitle": "DELUXE Carpaccio cu parmezan și ulei de măsline 120 g",
+    "offerPrice": 21.99,
     "promo": true
    },
    "fasole": {
@@ -50,16 +68,28 @@
     "offerPrice": 8.99,
     "promo": true
    },
+   "ceapa": {
+    "price": 1.59,
+    "offerTitle": "Ceapă galbenă per kg",
+    "offerPrice": 1.59,
+    "promo": true
+   },
    "rosii": {
-    "price": 17.98,
-    "offerTitle": "Roșii cherry caserolă 500 g",
-    "offerPrice": 8.99,
+    "price": 8.32,
+    "offerTitle": "NATURELO Passata rustică de roșii 720 ml",
+    "offerPrice": 5.99,
     "promo": true
    },
    "castraveti": {
     "price": 2.99,
     "offerTitle": "Castraveți Fabio per buc.",
     "offerPrice": 2.99,
+    "promo": true
+   },
+   "spanac": {
+    "price": 3.6,
+    "offerTitle": "Spanac pungă 500 g",
+    "offerPrice": 8.99,
     "promo": true
    },
    "salata": {
@@ -98,16 +128,22 @@
     "offerPrice": 1.89,
     "promo": true
    },
+   "miel": {
+    "price": 69.9,
+    "offerTitle": "Spată de miel condimentată per 100 g",
+    "offerPrice": 6.99,
+    "promo": true
+   },
    "carnati": {
-    "price": 19.98,
-    "offerTitle": "DULANO SELECTION Cârnați cabanos de porc 100 g",
-    "offerPrice": 9.99,
+    "price": 5.5,
+    "offerTitle": "Cârnați 400 g",
+    "offerPrice": 10.99,
     "promo": true
    },
    "creveti": {
-    "price": 30,
-    "offerTitle": "Deluxe Creveți eviscerați White Tiger 800 g",
-    "offerPrice": 59.99,
+    "price": 15.98,
+    "offerTitle": "DELUXE Panzerotti umpluți cu creveți și crabi 250 g",
+    "offerPrice": 9.99,
     "promo": true
    },
    "portocale": {
@@ -131,180 +167,196 @@
   },
   "kaufland": {
    "piept_pui": {
-    "price": 30.99,
-    "offerTitle": "La Provincia Piept de pui dezosat kg",
-    "offerPrice": 30.99,
+    "price": 29.99,
+    "offerTitle": "Puiul de odinioară Piept de pui, dezosat\nhrănit cu porumb kg",
+    "offerPrice": 29.99,
     "promo": true
    },
    "pulpe_pui": {
-    "price": 15.99,
-    "offerTitle": "La Provincia Pulpe de pui inferioare\nATM kg",
-    "offerPrice": 15.99,
-    "promo": true
-   },
-   "somon": {
-    "price": 79.5,
-    "offerTitle": "Negro Somon 100 g",
-    "offerPrice": 15.9,
+    "price": 17.99,
+    "offerTitle": "Puiul de odinioară Pulpe de pui cu spate\nhrănit cu porumb kg",
+    "offerPrice": 17.99,
     "promo": true
    },
    "ton": {
-    "price": 35.68,
-    "offerTitle": "Rio Mare Ton în ulei\nde măsline 3 x 65 g",
-    "offerPrice": 28.99,
-    "promo": true
-   },
-   "oua": {
-    "price": 12.99,
-    "offerTitle": "Aviputna Oua din ograda\n10 bucati 10 bucăti",
-    "offerPrice": 12.99,
+    "price": 12.69,
+    "offerTitle": "Defish Ton bucăți\nîn ulei 170 g",
+    "offerPrice": 8.99,
     "promo": true
    },
    "iaurt_grec": {
-    "price": 11.97,
-    "offerTitle": "Kolios Iaurt grecesc autentic\n150g 150g",
-    "offerPrice": 4.49,
+    "price": 4.88,
+    "offerTitle": "Lacto Fresh Iaurt stil grecesc\n10% grăsime 900 g",
+    "offerPrice": 10.99,
     "promo": true
    },
    "mozzarella": {
-    "price": 5.2,
-    "offerTitle": "Monor Mozzarella biluțe\n96 g 96 g",
-    "offerPrice": 3.99,
+    "price": 5.99,
+    "offerTitle": "K-BIO MOZZARELLA 45% GR.\n125G 125 g",
+    "offerPrice": 5.99,
     "promo": true
    },
    "lapte": {
-    "price": 4.53,
-    "offerTitle": "K-Classic lapte\n1,5l 1,5l",
-    "offerPrice": 6.79,
+    "price": 5.99,
+    "offerTitle": "K-Free Lapte UHT\n1,5% grăsime 1 l",
+    "offerPrice": 5.99,
     "promo": true
    },
-   "orez": {
-    "price": 8.99,
-    "offerTitle": "KRINA Orez bob mare 1 kg",
-    "offerPrice": 8.99,
-    "promo": true
-   },
-   "linte": {
-    "price": 4.99,
-    "offerTitle": "Natura Linte roşie 500 g",
-    "offerPrice": 4.99,
+   "naut": {
+    "price": 5.59,
+    "offerTitle": "Deroni Năut\n500g",
+    "offerPrice": 6.99,
     "promo": true
    },
    "fasole": {
-    "price": 7.8,
-    "offerTitle": "Sadu Fasole\ncu costiţă afumată 820 g 820 g",
-    "offerPrice": 15.99,
+    "price": 4.44,
+    "offerTitle": "Atifco Fasole albă boabe\n900 g 900 g",
+    "offerPrice": 9.99,
     "promo": true
    },
    "paine": {
-    "price": 4.98,
-    "offerTitle": "Pâine mediteraneeană răsucită\ncu măsline 300 g",
-    "offerPrice": 2.99,
+    "price": 3.42,
+    "offerTitle": "Pâinea Campionilor\n700 g 700 g",
+    "offerPrice": 4.79,
     "promo": true
    },
    "cartofi": {
-    "price": 7.19,
-    "offerTitle": "Cartofi pentru salată plasă 2,5 kg\ncalitatea I plasă 2,5kg",
+    "price": 12.98,
+    "offerTitle": "Rusty Cartofi preprăjiţi\n1 kg 1 kg",
+    "offerPrice": 6.49,
+    "promo": true
+   },
+   "ceapa": {
+    "price": 2.39,
+    "offerTitle": "Ceapă roşie calitatea I\nkg kg",
+    "offerPrice": 2.39,
+    "promo": true
+   },
+   "rosii": {
+    "price": 17.98,
+    "offerTitle": "Roşii cherry calitatea I\ncaserolă 500 g caserolă 500g",
     "offerPrice": 8.99,
     "promo": true
    },
-   "cartofi_dulci": {
-    "price": 6.99,
-    "offerTitle": "Cartofi dulci calitatea I\nkg kg",
-    "offerPrice": 6.99,
+   "castraveti": {
+    "price": 4.49,
+    "offerTitle": "K-Bio Castraveţi long\nbuc buc",
+    "offerPrice": 4.49,
     "promo": true
    },
-   "ardei": {
-    "price": 10.79,
-    "offerTitle": "Ardei mix calitatea I 500g",
-    "offerPrice": 8.99,
+   "dovlecei": {
+    "price": 4,
+    "offerTitle": "Dovlecei Zucchini calitatea I\nkg kg",
+    "offerPrice": 7.99,
     "promo": true
    },
-   "lamaie": {
-    "price": 2.5,
-    "offerTitle": "Lămâi kg\nNerec.consumul cojii kg",
-    "offerPrice": 4.99,
+   "avocado": {
+    "price": 3.49,
+    "offerTitle": "Avocado buc",
+    "offerPrice": 3.49,
     "promo": true
    },
-   "mazare": {
-    "price": 8.84,
-    "offerTitle": "Casa Ţărănească Mazăre verde fină\n1 kg 1 kg",
-    "offerPrice": 11.79,
-    "promo": true
-   },
-   "smantana": {
-    "price": 10.98,
-    "offerTitle": "Lacto Fresh Smântână\n200 g 200 g",
-    "offerPrice": 5.49,
-    "promo": true
-   },
-   "crema_branza": {
-    "price": 13.98,
-    "offerTitle": "Ardei iuți roșii cu cremă brânză 100 g",
-    "offerPrice": 6.99,
+   "unt": {
+    "price": 18.99,
+    "offerTitle": "MANTOVA Ulei fls cu unt 200 ml",
+    "offerPrice": 18.99,
     "promo": true
    },
    "cascaval": {
-    "price": 11.99,
-    "offerTitle": "Vreau din România Caşcaval Rucăr\n42% grăsime 400 g 400 g",
-    "offerPrice": 11.99,
+    "price": 11.56,
+    "offerTitle": "Gordi Cașcaval Dalia de vacă\n36% grăsme, 100 g 100 g",
+    "offerPrice": 2.89,
     "promo": true
    },
    "carne_vita": {
-    "price": 24.95,
-    "offerTitle": "Irish Beef Carne de vită pentru gătit kg",
-    "offerPrice": 49.9,
+    "price": 18.73,
+    "offerTitle": "Sano Vita Mix 5 semințe 200 g",
+    "offerPrice": 7.49,
     "promo": true
    },
    "porc": {
-    "price": 15.99,
-    "offerTitle": "Piept de porc cu os kg",
-    "offerPrice": 15.99,
+    "price": 16.99,
+    "offerTitle": "Cotlet de porc fără os kg",
+    "offerPrice": 16.99,
+    "promo": true
+   },
+   "bacon": {
+    "price": 11.98,
+    "offerTitle": "Cris-Tim Bacon fiert afumat\n100gr 100gr",
+    "offerPrice": 5.99,
     "promo": true
    },
    "carnati": {
-    "price": 6.35,
-    "offerTitle": "Aldis Cârnați de porc semiafumați\n630 g 630 g",
-    "offerPrice": 19.99,
+    "price": 5.18,
+    "offerTitle": "Cârnați vienezi semiafumați\nkg kg",
+    "offerPrice": 25.9,
+    "promo": true
+   },
+   "fasole_verde": {
+    "price": 6.74,
+    "offerTitle": "Casa ţărănească Fasole verde 1 kg",
+    "offerPrice": 8.99,
     "promo": true
    },
    "ciuperci": {
-    "price": 6.99,
-    "offerTitle": "Ciuperci Champignon calitatea I\ncaserolă 500g caserolă 500g",
-    "offerPrice": 6.99,
+    "price": 7.49,
+    "offerTitle": "K-Classic Ciuperci 400 g",
+    "offerPrice": 5.99,
+    "promo": true
+   },
+   "vinete": {
+    "price": 10.64,
+    "offerTitle": "Piramida Vinete tocate\n450 g 450 g",
+    "offerPrice": 4.79,
+    "promo": true
+   },
+   "porumb": {
+    "price": 4.99,
+    "offerTitle": "K-Classic Porumb dulce\n340 g 340 g",
+    "offerPrice": 4.99,
+    "promo": true
+   },
+   "mustar": {
+    "price": 5.99,
+    "offerTitle": "Bunătăţi de la Bunica Muştar dulce\n500 g 500 g",
+    "offerPrice": 9.99,
+    "promo": true
+   },
+   "maioneza": {
+    "price": 9.04,
+    "offerTitle": "Univer Sos maioneză\nde post 420 g",
+    "offerPrice": 9.49,
     "promo": true
    },
    "nuci": {
-    "price": 11.72,
-    "offerTitle": "KLC Mix proteic\nnuci 150 g",
-    "offerPrice": 8.79,
+    "price": 12.71,
+    "offerTitle": "Nucina Porumb copt\nsare 110 g",
+    "offerPrice": 6.99,
     "promo": true
    }
   }
  },
  "stats": {
   "lidl": {
-   "offersFound": 380,
-   "matched": 21,
+   "offersFound": 416,
+   "matched": 27,
    "leaflets": [
     "cont-my-lidl-protectia-datelor-cookies",
     "protectia-datelor-in-magazine",
     "nota-de-informare-serviciul-clien-i",
     "informare-supravegherea-video",
     "catalogul-saptamanal-de-luni-09-11-pana-duminica-15-11",
-    "catalogul-deluxe"
+    "catalogul-saptamanal-de-luni-16-11-pana-duminica-22-11"
    ]
   },
   "kaufland": {
-   "offersFound": 341,
-   "matched": 25,
+   "offersFound": 560,
+   "matched": 28,
    "leaflets": [
-    "RO_ro_leaflet6_3400_RO45-OC2",
-    "RO_ro_Magazine3_3400_RO45-OC3",
-    "RO_ro_Magazine4_3400_RO45-OC4",
     "RO_ro_leaflet6_3400_RO46-OC2",
     "RO_ro_Magazine3_3400_RO46-OC3",
-    "RO_ro_Wrapper2_3400_RO46-CL4"
+    "RO_ro_Wrapper2_3400_RO46-CL4",
+    "RO_ro_Magazine4_3400_RO45-OC4"
    ]
   }
  }
