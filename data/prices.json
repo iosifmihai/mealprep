@@ -1,11 +1,17 @@
 {
- "updated": "2026-11-11T11:51:37.829Z",
+ "updated": "2026-11-12T12:41:09.589Z",
  "stores": {
   "lidl": {
    "piept_pui": {
     "price": 19.18,
     "offerTitle": "- Carne tocată din piept și pulpă de pui 500 g",
     "offerPrice": 9.59,
+    "promo": true
+   },
+   "pulpe_pui": {
+    "price": 11.12,
+    "offerTitle": "Pulpe de pui, superioare și inferioare per 100 g",
+    "offerPrice": 1.39,
     "promo": true
    },
    "curcan": {
@@ -21,9 +27,9 @@
     "promo": true
    },
    "ton": {
-    "price": 29.99,
-    "offerTitle": "DELUXE File de ton alb în ulei de măsline 200 g",
-    "offerPrice": 24.99,
+    "price": 28.28,
+    "offerTitle": "Nixe File de ton alb în ulei de măsline 280 g",
+    "offerPrice": 32.99,
     "promo": true
    },
    "iaurt_grec": {
@@ -80,22 +86,10 @@
     "offerPrice": 5.99,
     "promo": true
    },
-   "castraveti": {
-    "price": 2.99,
-    "offerTitle": "Castraveți Fabio per buc.",
-    "offerPrice": 2.99,
-    "promo": true
-   },
    "spanac": {
     "price": 3.6,
     "offerTitle": "Spanac pungă 500 g",
     "offerPrice": 8.99,
-    "promo": true
-   },
-   "salata": {
-    "price": 5.49,
-    "offerTitle": "Salată Iceberg per buc.",
-    "offerPrice": 5.49,
     "promo": true
    },
    "avocado": {
@@ -152,10 +146,10 @@
     "offerPrice": 2.99,
     "promo": true
    },
-   "ciuperci": {
-    "price": 8.99,
-    "offerTitle": "Ciuperci Champignon albe per caserolă",
-    "offerPrice": 8.99,
+   "mustar": {
+    "price": 2.99,
+    "offerTitle": "CĂMARA NOASTRĂ Muștar 300 g",
+    "offerPrice": 2.99,
     "promo": true
    },
    "nuci": {
@@ -338,8 +332,8 @@
  },
  "stats": {
   "lidl": {
-   "offersFound": 416,
-   "matched": 27,
+   "offersFound": 449,
+   "matched": 26,
    "leaflets": [
     "cont-my-lidl-protectia-datelor-cookies",
     "protectia-datelor-in-magazine",
