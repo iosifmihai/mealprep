@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-14T11:26:57.671Z",
+ "updated": "2026-11-15T11:56:01.837Z",
  "stores": {
   "lidl": {
    "piept_pui": {
@@ -76,7 +76,7 @@
    },
    "ceapa": {
     "price": 1.59,
-    "offerTitle": "Ceapă galbenă per kg",
+    "offerTitle": "MATRIKET Ceapă galbenă per kg",
     "offerPrice": 1.59,
     "promo": true
    },
@@ -238,12 +238,6 @@
     "offerPrice": 4.49,
     "promo": true
    },
-   "dovlecei": {
-    "price": 4,
-    "offerTitle": "Dovlecei Zucchini calitatea I\nkg kg",
-    "offerPrice": 7.99,
-    "promo": true
-   },
    "avocado": {
     "price": 3.49,
     "offerTitle": "Avocado buc",
@@ -332,7 +326,7 @@
  },
  "stats": {
   "lidl": {
-   "offersFound": 510,
+   "offersFound": 511,
    "matched": 26,
    "leaflets": [
     "cont-my-lidl-protectia-datelor-cookies",
@@ -344,13 +338,15 @@
    ]
   },
   "kaufland": {
-   "offersFound": 556,
-   "matched": 28,
+   "offersFound": 551,
+   "matched": 27,
    "leaflets": [
     "RO_ro_leaflet6_3400_RO46-OC2",
     "RO_ro_Magazine3_3400_RO46-OC3",
     "RO_ro_Wrapper2_3400_RO46-CL4",
-    "RO_ro_Magazine4_3400_RO45-OC4"
+    "RO_ro_Magazine4_3400_RO45-OC4",
+    "RO_ro_leaflet6_3400_RO47-OC2",
+    "RO_ro_Magazine3_3400_RO47-OC3"
    ]
   }
  }
