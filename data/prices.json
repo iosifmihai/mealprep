@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-15T11:56:01.837Z",
+ "updated": "2026-11-16T12:43:03.396Z",
  "stores": {
   "lidl": {
    "piept_pui": {
@@ -15,15 +15,15 @@
     "promo": true
    },
    "curcan": {
-    "price": 14.45,
-    "offerTitle": "- Pulpe superioare de curcan per 100 g",
-    "offerPrice": 2.89,
+    "price": 29.99,
+    "offerTitle": "Lupilu Set fondue/Căsuță/Curcan 1 set",
+    "offerPrice": 29.99,
     "promo": true
    },
    "somon": {
-    "price": 28.56,
-    "offerTitle": "DELUXE Somon în foietaj 700 g",
-    "offerPrice": 39.99,
+    "price": 83.3,
+    "offerTitle": "DELUXE Specialitate din somon 150 g",
+    "offerPrice": 24.99,
     "promo": true
    },
    "ton": {
@@ -38,12 +38,6 @@
     "offerPrice": 3.99,
     "promo": true
    },
-   "feta": {
-    "price": 13.99,
-    "offerTitle": "Milbona Brânză feta Chalkidiki 200 g",
-    "offerPrice": 13.99,
-    "promo": true
-   },
    "lapte": {
     "price": 4.29,
     "offerTitle": "Pilos Lapte de consum 1 L",
@@ -56,28 +50,22 @@
     "offerPrice": 21.99,
     "promo": true
    },
-   "fasole": {
-    "price": 6.38,
-    "offerTitle": "Fasole bătută 250 g",
-    "offerPrice": 3.99,
-    "promo": true
-   },
    "paine": {
-    "price": 5.71,
-    "offerTitle": "Camara Noastra Pâine albă cu maia 700 g",
-    "offerPrice": 7.99,
+    "price": 6.24,
+    "offerTitle": "Pâine Durum 400 g",
+    "offerPrice": 4.99,
     "promo": true
    },
    "ardei": {
-    "price": 10.79,
-    "offerTitle": "Ardei gras mix 500 g",
-    "offerPrice": 8.99,
+    "price": 11.99,
+    "offerTitle": "Ardei roșu Palermo pungă 500 g",
+    "offerPrice": 9.99,
     "promo": true
    },
    "ceapa": {
-    "price": 1.59,
-    "offerTitle": "MATRIKET Ceapă galbenă per kg",
-    "offerPrice": 1.59,
+    "price": 2.39,
+    "offerTitle": "Ceapă roșie per kg",
+    "offerPrice": 2.39,
     "promo": true
    },
    "rosii": {
@@ -92,40 +80,16 @@
     "offerPrice": 8.99,
     "promo": true
    },
-   "avocado": {
-    "price": 3.49,
-    "offerTitle": "Avocado per buc.",
-    "offerPrice": 3.49,
-    "promo": true
-   },
-   "lamaie": {
-    "price": 2.93,
-    "offerTitle": "Lămâi plasă 750 g",
-    "offerPrice": 4.39,
-    "promo": true
-   },
-   "miere": {
-    "price": 36.35,
-    "offerTitle": "Deluxe Miere polifloră cu nuci 440 g",
-    "offerPrice": 39.99,
-    "promo": true
-   },
    "unt": {
-    "price": 6.3,
-    "offerTitle": "- Croissant cu unt 20 g",
-    "offerPrice": 0.63,
+    "price": 10.76,
+    "offerTitle": "Favorina Fursecuri cu unt în formă de stea 260 g",
+    "offerPrice": 13.99,
     "promo": true
    },
    "porc": {
     "price": 18.9,
     "offerTitle": "- Spată de porc fără os per 100 g",
     "offerPrice": 1.89,
-    "promo": true
-   },
-   "miel": {
-    "price": 69.9,
-    "offerTitle": "Spată de miel condimentată per 100 g",
-    "offerPrice": 6.99,
     "promo": true
    },
    "carnati": {
@@ -140,12 +104,6 @@
     "offerPrice": 9.99,
     "promo": true
    },
-   "portocale": {
-    "price": 2.99,
-    "offerTitle": "Portocale per buc.",
-    "offerPrice": 2.99,
-    "promo": true
-   },
    "mustar": {
     "price": 2.99,
     "offerTitle": "CĂMARA NOASTRĂ Muștar 300 g",
@@ -153,9 +111,9 @@
     "promo": true
    },
    "nuci": {
-    "price": 18.18,
-    "offerTitle": "Deluxe Miere polifloră cu nuci 440 g",
-    "offerPrice": 39.99,
+    "price": 18.99,
+    "offerTitle": "FAVORINA Nuci / Migdale glazurate 200 g",
+    "offerPrice": 18.99,
     "promo": true
    }
   },
@@ -326,19 +284,19 @@
  },
  "stats": {
   "lidl": {
-   "offersFound": 511,
-   "matched": 26,
+   "offersFound": 431,
+   "matched": 19,
    "leaflets": [
     "cont-my-lidl-protectia-datelor-cookies",
     "protectia-datelor-in-magazine",
     "nota-de-informare-serviciul-clien-i",
     "informare-supravegherea-video",
-    "catalogul-saptamanal-de-luni-09-11-pana-duminica-15-11",
-    "catalogul-saptamanal-de-luni-16-11-pana-duminica-22-11"
+    "catalogul-saptamanal-de-luni-16-11-pana-duminica-22-11",
+    "catalogul-deluxe"
    ]
   },
   "kaufland": {
-   "offersFound": 551,
+   "offersFound": 547,
    "matched": 27,
    "leaflets": [
     "RO_ro_leaflet6_3400_RO46-OC2",
