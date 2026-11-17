@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-16T12:43:03.396Z",
+ "updated": "2026-11-17T13:22:41.613Z",
  "stores": {
   "lidl": {
    "piept_pui": {
@@ -284,7 +284,7 @@
  },
  "stats": {
   "lidl": {
-   "offersFound": 431,
+   "offersFound": 437,
    "matched": 19,
    "leaflets": [
     "cont-my-lidl-protectia-datelor-cookies",
