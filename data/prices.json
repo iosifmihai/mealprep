@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-18T13:01:04.766Z",
+ "updated": "2026-11-19T13:01:48.705Z",
  "stores": {
   "lidl": {
    "piept_pui": {
@@ -74,12 +74,6 @@
     "offerPrice": 6.99,
     "promo": true
    },
-   "ardei": {
-    "price": 11.99,
-    "offerTitle": "Ardei roșu Palermo pungă 500 g",
-    "offerPrice": 9.99,
-    "promo": true
-   },
    "ceapa": {
     "price": 2.39,
     "offerTitle": "RYNECZEK LIDLA Ceapă roșie per kg",
@@ -90,12 +84,6 @@
     "price": 8.32,
     "offerTitle": "NATURELO Passata rustică de roșii 720 ml",
     "offerPrice": 5.99,
-    "promo": true
-   },
-   "spanac": {
-    "price": 3.6,
-    "offerTitle": "Spanac pungă 500 g",
-    "offerPrice": 8.99,
     "promo": true
    },
    "banane": {
@@ -111,15 +99,21 @@
     "promo": true
    },
    "unt": {
-    "price": 6.39,
-    "offerTitle": "Unt 500 g + 250 g",
-    "offerPrice": 15.98,
+    "price": 10.76,
+    "offerTitle": "Favorina Fursecuri cu unt în formă de stea 260 g",
+    "offerPrice": 13.99,
     "promo": true
    },
    "cascaval": {
     "price": 39.96,
     "offerTitle": "Palmieri din cașcaval 100 g",
     "offerPrice": 9.99,
+    "promo": true
+   },
+   "carne_vita": {
+    "price": 59.98,
+    "offerTitle": "Steak de vită US Black Angus 300 g",
+    "offerPrice": 35.99,
     "promo": true
    },
    "porc": {
@@ -272,8 +266,8 @@
  },
  "stats": {
   "lidl": {
-   "offersFound": 490,
-   "matched": 26,
+   "offersFound": 517,
+   "matched": 25,
    "leaflets": [
     "cont-my-lidl-protectia-datelor-cookies",
     "protectia-datelor-in-magazine",
@@ -284,7 +278,7 @@
    ]
   },
   "kaufland": {
-   "offersFound": 351,
+   "offersFound": 353,
    "matched": 18,
    "leaflets": [
     "RO_ro_leaflet6_3400_RO47-OC2",
