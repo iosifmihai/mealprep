@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-19T13:01:48.705Z",
+ "updated": "2026-11-20T12:52:22.187Z",
  "stores": {
   "lidl": {
    "piept_pui": {
@@ -76,7 +76,7 @@
    },
    "ceapa": {
     "price": 2.39,
-    "offerTitle": "RYNECZEK LIDLA Ceapă roșie per kg",
+    "offerTitle": "QUALITÉ SUISSE Ceapă roșie per kg",
     "offerPrice": 2.39,
     "promo": true
    },
@@ -278,7 +278,7 @@
    ]
   },
   "kaufland": {
-   "offersFound": 353,
+   "offersFound": 350,
    "matched": 18,
    "leaflets": [
     "RO_ro_leaflet6_3400_RO47-OC2",
