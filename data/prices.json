@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-21T12:36:47.917Z",
+ "updated": "2026-11-22T12:33:56.293Z",
  "stores": {
   "lidl": {
    "piept_pui": {
@@ -76,7 +76,7 @@
    },
    "ceapa": {
     "price": 2.39,
-    "offerTitle": "RYNECZEK LIDLA Ceapă roșie per kg",
+    "offerTitle": "Ceapă roșie per kg",
     "offerPrice": 2.39,
     "promo": true
    },
@@ -283,7 +283,10 @@
    "leaflets": [
     "RO_ro_leaflet6_3400_RO47-OC2",
     "RO_ro_Magazine3_3400_RO47-OC3",
-    "RO_ro_Wrapper2_3400_RO47-CL4"
+    "RO_ro_Wrapper2_3400_RO47-CL4",
+    "RO_ro_leaflet6_3400_RO48-OC2",
+    "RO_ro_Magazine3_3400_RO48-OC3",
+    "RO_ro_Wrapper2_3400_RO48-CL4"
    ]
   }
  }
