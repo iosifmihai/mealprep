@@ -1,11 +1,11 @@
 {
- "updated": "2026-11-22T12:33:56.293Z",
+ "updated": "2026-11-23T14:35:16.825Z",
  "stores": {
   "lidl": {
    "piept_pui": {
-    "price": 19.18,
-    "offerTitle": "- Carne tocată din piept și pulpă de pui 500 g",
-    "offerPrice": 9.59,
+    "price": 29.9,
+    "offerTitle": "- Piept de pui, dezosat, fără piele per 100 g",
+    "offerPrice": 2.99,
     "promo": true
    },
    "pulpe_pui": {
@@ -14,40 +14,16 @@
     "offerPrice": 0.99,
     "promo": true
    },
-   "curcan": {
-    "price": 29.99,
-    "offerTitle": "Lupilu Set fondue/Căsuță/Curcan 1 set",
-    "offerPrice": 29.99,
-    "promo": true
-   },
    "somon": {
     "price": 28.32,
     "offerTitle": "Somon sălbatic în foietaj 300 g",
     "offerPrice": 16.99,
     "promo": true
    },
-   "ton": {
-    "price": 28.28,
-    "offerTitle": "Nixe File de ton alb în ulei de măsline 280 g",
-    "offerPrice": 32.99,
-    "promo": true
-   },
-   "iaurt_grec": {
-    "price": 3.99,
-    "offerTitle": "Pilos Iaurt cremos în stil grecesc 400 g",
-    "offerPrice": 3.99,
-    "promo": true
-   },
    "mozzarella": {
     "price": 3.49,
     "offerTitle": "MILBONA Mozzarella Classic 125 g",
     "offerPrice": 3.49,
-    "promo": true
-   },
-   "lapte": {
-    "price": 4.29,
-    "offerTitle": "Pilos Lapte de consum 1 L",
-    "offerPrice": 4.29,
     "promo": true
    },
    "parmezan": {
@@ -57,9 +33,9 @@
     "promo": true
    },
    "paine": {
-    "price": 6.24,
-    "offerTitle": "Pâine Durum 400 g",
-    "offerPrice": 4.99,
+    "price": 7.72,
+    "offerTitle": "Deluxe Pâine cu maia de grâu, secară și făină cu grâu 550 g",
+    "offerPrice": 8.49,
     "promo": true
    },
    "cartofi": {
@@ -74,16 +50,10 @@
     "offerPrice": 6.99,
     "promo": true
    },
-   "ceapa": {
-    "price": 2.39,
-    "offerTitle": "Ceapă roșie per kg",
-    "offerPrice": 2.39,
-    "promo": true
-   },
    "rosii": {
-    "price": 8.32,
-    "offerTitle": "NATURELO Passata rustică de roșii 720 ml",
-    "offerPrice": 5.99,
+    "price": 15.98,
+    "offerTitle": "Roșii cherry caserolă 500 g",
+    "offerPrice": 7.99,
     "promo": true
    },
    "banane": {
@@ -128,22 +98,10 @@
     "offerPrice": 9.99,
     "promo": true
    },
-   "creveti": {
-    "price": 15.98,
-    "offerTitle": "DELUXE Panzerotti umpluți cu creveți și crabi 250 g",
-    "offerPrice": 9.99,
-    "promo": true
-   },
    "ciuperci": {
     "price": 6.49,
     "offerTitle": "Ciuperci Champignon albe caserolă 500 g",
     "offerPrice": 6.49,
-    "promo": true
-   },
-   "mustar": {
-    "price": 2.99,
-    "offerTitle": "CĂMARA NOASTRĂ Muștar 300 g",
-    "offerPrice": 2.99,
     "promo": true
    },
    "nuci": {
@@ -266,15 +224,15 @@
  },
  "stats": {
   "lidl": {
-   "offersFound": 518,
-   "matched": 25,
+   "offersFound": 457,
+   "matched": 18,
    "leaflets": [
     "cont-my-lidl-protectia-datelor-cookies",
     "protectia-datelor-in-magazine",
     "nota-de-informare-serviciul-clien-i",
     "informare-supravegherea-video",
-    "catalogul-saptamanal-de-luni-16-11-pana-duminica-22-11",
-    "catalogul-saptamanal-de-luni-23-11-pana-duminica-29-11"
+    "catalogul-saptamanal-de-luni-23-11-pana-duminica-29-11",
+    "catalogul-deluxe"
    ]
   },
   "kaufland": {
