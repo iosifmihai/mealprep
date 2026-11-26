@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T14:18:56.351Z",
+ "updated": "2026-11-26T13:52:09.130Z",
  "stores": {
   "lidl": {
    "piept_pui": {
@@ -92,6 +92,12 @@
     "offerPrice": 4.99,
     "promo": true
    },
+   "unt_arahide": {
+    "price": 12.99,
+    "offerTitle": "MARIBEL Unt de arahide, bio 350 g",
+    "offerPrice": 12.99,
+    "promo": true
+   },
    "miere": {
     "price": 7.11,
     "offerTitle": "Miere polifloră 900 g",
@@ -108,6 +114,12 @@
     "price": 13.58,
     "offerTitle": "Preparat cu smântână pentru frișcă, light 250 ml",
     "offerPrice": 8.49,
+    "promo": true
+   },
+   "crema_branza": {
+    "price": 5.49,
+    "offerTitle": "MILBONA Cremă de brânză proaspătă 200 g",
+    "offerPrice": 5.49,
     "promo": true
    },
    "cascaval": {
@@ -140,12 +152,6 @@
     "offerPrice": 9.99,
     "promo": true
    },
-   "ciuperci": {
-    "price": 6.49,
-    "offerTitle": "Ciuperci Champignon albe caserolă 500 g",
-    "offerPrice": 6.49,
-    "promo": true
-   },
    "nuci": {
     "price": 18.99,
     "offerTitle": "FAVORINA Nuci / Migdale glazurate 200 g",
@@ -155,9 +161,9 @@
   },
   "kaufland": {
    "piept_pui": {
-    "price": 30.99,
-    "offerTitle": "Puiul de odinioară Mușchiulet din piept de pui\nhrănit cu porumb kg",
-    "offerPrice": 30.99,
+    "price": 24.5,
+    "offerTitle": "Vreau din Romania Piept de pui dezosat vacum\nkg kg",
+    "offerPrice": 24.5,
     "promo": true
    },
    "pulpe_pui": {
@@ -266,8 +272,8 @@
  },
  "stats": {
   "lidl": {
-   "offersFound": 506,
-   "matched": 25,
+   "offersFound": 523,
+   "matched": 26,
    "leaflets": [
     "cont-my-lidl-protectia-datelor-cookies",
     "protectia-datelor-in-magazine",
@@ -278,7 +284,7 @@
    ]
   },
   "kaufland": {
-   "offersFound": 388,
+   "offersFound": 343,
    "matched": 18,
    "leaflets": [
     "RO_ro_leaflet6_3400_RO48-OC2",
