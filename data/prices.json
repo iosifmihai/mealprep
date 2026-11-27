@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26T13:52:09.130Z",
+ "updated": "2026-11-27T13:50:12.597Z",
  "stores": {
   "lidl": {
    "piept_pui": {
@@ -28,7 +28,7 @@
    },
    "iaurt_grec": {
     "price": 7.97,
-    "offerTitle": "Iaurt natur în stil grecesc bio 150 g",
+    "offerTitle": "Iaurt bio cu specific grecesc 150 g",
     "offerPrice": 2.99,
     "promo": true
    },
@@ -48,6 +48,12 @@
     "price": 11.19,
     "offerTitle": "MILBONA Parmezan ras / fâșii 125 g",
     "offerPrice": 13.99,
+    "promo": true
+   },
+   "orez": {
+    "price": 23.16,
+    "offerTitle": "RISO SCOTTI Orez ușor de gătit 2 x 125 g",
+    "offerPrice": 5.79,
     "promo": true
    },
    "paine": {
@@ -150,6 +156,12 @@
     "price": 4,
     "offerTitle": "- Cârnați subțiri de porc 500 g",
     "offerPrice": 9.99,
+    "promo": true
+   },
+   "maioneza": {
+    "price": 6.39,
+    "offerTitle": "Sos de maioneză 500 ml",
+    "offerPrice": 7.99,
     "promo": true
    },
    "nuci": {
@@ -272,8 +284,8 @@
  },
  "stats": {
   "lidl": {
-   "offersFound": 523,
-   "matched": 26,
+   "offersFound": 531,
+   "matched": 28,
    "leaflets": [
     "cont-my-lidl-protectia-datelor-cookies",
     "protectia-datelor-in-magazine",
@@ -284,7 +296,7 @@
    ]
   },
   "kaufland": {
-   "offersFound": 343,
+   "offersFound": 347,
    "matched": 18,
    "leaflets": [
     "RO_ro_leaflet6_3400_RO48-OC2",
